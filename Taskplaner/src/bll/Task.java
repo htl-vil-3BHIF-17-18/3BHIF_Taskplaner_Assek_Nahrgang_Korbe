@@ -1,27 +1,27 @@
 package bll;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Task {
-	private String fach;
+	private String subject;
 	private String text;
-	private Date datum;
+	private Date date;
 	private TaskTyp typ;
 	
-	public Task(String fach, String text, Date datum, TaskTyp typ) {
+	public Task(String subject, String text, Date datum, TaskTyp typ) {
 		super();
-		this.fach = fach;
+		this.subject = subject;
 		this.text = text;
-		this.datum = datum;
+		this.date = datum;
 		this.typ = typ;
 	}
 
-	public String getFach() {
-		return fach;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setFach(String fach) {
-		this.fach = fach;
+	public void setSubject(String fach) {
+		this.subject = fach;
 	}
 
 	public String getText() {
@@ -33,11 +33,11 @@ public class Task {
 	}
 
 	public Date getDatum() {
-		return datum;
+		return date;
 	}
 
 	public void setDatum(Date datum) {
-		this.datum = datum;
+		this.date = datum;
 	}
 
 	public TaskTyp getTyp() {
@@ -46,5 +46,27 @@ public class Task {
 
 	public void setTyp(TaskTyp typ) {
 		this.typ = typ;
+	}
+	
+	public static TaskTyp getTypFromString(String s) {
+		TaskTyp rgw = null;
+		switch(s) {
+		case "Hausübung":
+			rgw=TaskTyp.Hausuebung;
+			break;
+		case "Schularbeit":
+			rgw=TaskTyp.Schularbeit;
+			break;
+		case "GLF":
+			rgw=TaskTyp.GLF;
+			break;
+		case "Prüfung":
+			rgw=TaskTyp.Pruefung;
+			break;
+		case "MAK":
+			rgw=TaskTyp.MAK;
+			break;
+		}
+		return rgw;
 	}
 }
