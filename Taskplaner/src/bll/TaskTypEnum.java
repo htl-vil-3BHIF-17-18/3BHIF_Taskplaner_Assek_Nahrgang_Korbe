@@ -1,6 +1,6 @@
 package bll;
 
-public enum TaskTyp {
+public enum TaskTypEnum {
 	Hausuebung,
 	Schularbeit,
 	GLF,

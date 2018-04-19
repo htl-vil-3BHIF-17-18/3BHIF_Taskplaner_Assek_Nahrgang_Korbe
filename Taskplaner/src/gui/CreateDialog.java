@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 
 import bll.Task;
-import bll.TaskTyp;
+import bll.TaskTypEnum;
 
 public class CreateDialog extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 7152982713464622095L;

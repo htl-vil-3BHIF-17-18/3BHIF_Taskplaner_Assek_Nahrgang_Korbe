@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,8 @@ public class SortPanel extends JPanel implements ActionListener {
 	public SortPanel() {
 		super();
 		this.initializeControls();
-		this.setPreferredSize(new Dimension(200, 200));
+		this.setPreferredSize(new Dimension(200, 36));
+		this.setBackground(Color.DARK_GRAY);
 		this.setVisible(true);
 	}
 
