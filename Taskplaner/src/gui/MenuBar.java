@@ -1,11 +1,14 @@
 package gui;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 public class MenuBar extends JMenuBar implements ActionListener {
 	
@@ -15,10 +18,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final long serialVersionUID = 7795971250872208275L;
 	private JMenu menu = null;
 	private JMenuBar menuBar = null;
-	JMenuItem add = null;
-	JMenuItem del = null;
-	JMenuItem edit = null;
-	JMenuItem exit = null;
+	private JMenuItem add = null;
+	private JMenuItem del = null;
+	private JMenuItem edit = null;
+	private JMenuItem exit = null;
 	
 	public MenuBar() {
 		super();
@@ -28,6 +31,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	private void initializeControls() {
 		// TODO Auto-generated method stub
+
 		this.menu = new JMenu("Start");
 		this.menuBar = new JMenuBar();
 		
