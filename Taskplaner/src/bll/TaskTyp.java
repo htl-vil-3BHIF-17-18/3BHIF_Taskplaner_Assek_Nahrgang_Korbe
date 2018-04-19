@@ -4,6 +4,6 @@ public enum TaskTyp {
 	Hausuebung,
 	Schularbeit,
 	GLF,
-	Prüfung,
+	Pruefung,
 	MAK
 }
