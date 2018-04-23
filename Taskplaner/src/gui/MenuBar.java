@@ -10,6 +10,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import bll.Task;
+
 public class MenuBar extends JMenuBar implements ActionListener {
 	
 	/**
@@ -22,6 +24,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private JMenuItem del = null;
 	private JMenuItem edit = null;
 	private JMenuItem exit = null;
+	private TaskList tasklist = null;
 	
 	public MenuBar() {
 		super();
@@ -60,7 +63,9 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource().equals(add)) {
+			CreateDialog dialog = new CreateDialog(new Task());
 			
+			this.tasklist.addTask(dialog.getTask());
 		}
 		
 		if(e.getSource().equals(del)) {

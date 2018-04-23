@@ -9,6 +9,7 @@ import bll.*;
 public class OracleHelper {
 	
 	
+	
 	public static ArrayList<Task> getListFromDB()
 	{
 		Connection con = null;
@@ -48,8 +49,8 @@ public class OracleHelper {
 		return tasks;
 		
 	}
-	/*
-	public static void addStudentToDB(Student s)
+	
+	public static void addStudentToDB(Task t)
 	{
 		Connection con = null;
 		PreparedStatement pstmt_Insert = null;
@@ -58,9 +59,17 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
-			//pstmt_Insert = con.createStatement(?,?,?)//con.createStatement();
-			//rs = stmt_Insert.executeQuery("INSERT into schueler values()");
-		
+			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?);");
+			//rs = pstmt_Insert.executeQuery("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?)");
+			/* "INSERT INTO DBUSER"
+		+ "(USER_ID, USERNAME, CREATED_BY, CREATED_DATE) VALUES"
+		+ "(?,?,?,?)"; */
+			pstmt_Insert.setString(1, t.getSubject());
+			pstmt_Insert.setString(2, t.getText());
+			pstmt_Insert.setDate(3, t.getDatumSQL());
+			
+			pstmt_Insert .executeUpdate();
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,5 +88,5 @@ public class OracleHelper {
 		}
 		
 	}
-	*/
+	
 }

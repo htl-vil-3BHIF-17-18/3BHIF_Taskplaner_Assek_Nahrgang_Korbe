@@ -66,7 +66,10 @@ public class CreateDialog extends JDialog implements ActionListener{
 		this.add(bok);
 		this.add(bcancel);
 	}
-
+	
+	public Task getTask() {
+		return task;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {

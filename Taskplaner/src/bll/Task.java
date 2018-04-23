@@ -2,6 +2,7 @@ package bll;
 
 import java.util.Date;
 
+
 public class Task {
 	private String subject;
 	private String text;
@@ -15,6 +16,10 @@ public class Task {
 		this.text = text;
 		this.date = datum;
 		this.typ = typ;
+	}
+
+	public Task() {
+		
 	}
 
 	public String getSubject() {
@@ -35,6 +40,11 @@ public class Task {
 
 	public Date getDatum() {
 		return date;
+	}
+	
+	public java.sql.Date getDatumSQL()
+	{
+		return (java.sql.Date) date;
 	}
 
 	public void setDatum(Date datum) {
@@ -73,9 +83,9 @@ public class Task {
 
 	@Override
 	public String toString() {	
-		String subject_Text = subject.trim() + this.getSpaces(subject.trim().length() ) +"|"; 
-		System.out.println(subject_Text.length());
-		//String text_Text = text.trim() + this.getSpaces(text.trim().length()); 
+	
+		
+		
 		return subject.trim() + getSpaces(subject.trim().length())+"|  " + text + getSpaces(text.length())+"|  " + date + getSpaces(date.toString().length())+"|  " + typ;
 	}
 	
@@ -85,15 +95,13 @@ public class Task {
 	//	System.out.println("space: " + this.space.length());
 		String spaces = "";
 		int spaceHelper = this.anzahl_space-length;
-	//	System.out.println("länge neu: " + spaceHelper);
-		spaces+="*";
-				
+		System.out.println("länge neu: " + spaceHelper);
+			
 		for(int i = 0; i<spaceHelper;i++)
 		{
 			spaces += " ";
-			//System.out.print( i + " ");
 		}
-		spaces+="*";
+
 		return spaces;
 	}
 	
