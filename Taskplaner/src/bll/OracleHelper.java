@@ -50,20 +50,17 @@ public class OracleHelper {
 		
 	}
 	
-	public static void addStudentToDB(Task t)
+	public static void addTaskToDB(Task t)
 	{
 		Connection con = null;
 		PreparedStatement pstmt_Insert = null;
-		ResultSet rs = null;
+
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
 			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?);");
-			//rs = pstmt_Insert.executeQuery("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?)");
-			/* "INSERT INTO DBUSER"
-		+ "(USER_ID, USERNAME, CREATED_BY, CREATED_DATE) VALUES"
-		+ "(?,?,?,?)"; */
+			
 			pstmt_Insert.setString(1, t.getSubject());
 			pstmt_Insert.setString(2, t.getText());
 			pstmt_Insert.setDate(3, t.getDatumSQL());
@@ -77,8 +74,8 @@ public class OracleHelper {
 		finally {
 			
 			try {
-				rs.close();
-				//stmt_Select.close();
+
+				pstmt_Insert.close();
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
