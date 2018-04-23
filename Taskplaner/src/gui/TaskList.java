@@ -51,8 +51,7 @@ public class TaskList extends JPanel{
 	{
 		for(Task t : tList)
 		{
-			this.dlm.addElement(t);
-			this.tasks.add(t);
+			addTask(t);
 		}
 	}
 	

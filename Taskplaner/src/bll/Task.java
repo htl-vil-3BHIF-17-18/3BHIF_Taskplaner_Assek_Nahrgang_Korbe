@@ -19,7 +19,10 @@ public class Task {
 	}
 
 	public Task() {
-		
+		this.subject = "";
+		this.text = "";
+		this.date = new Date();
+		this.typ = TaskTypEnum.Hausuebung;
 	}
 
 	public String getSubject() {
@@ -91,12 +94,8 @@ public class Task {
 	
 	public String getSpaces(int length)
 	{
-		System.out.println("länge:" + length);
-	//	System.out.println("space: " + this.space.length());
 		String spaces = "";
-		int spaceHelper = this.anzahl_space-length;
-		System.out.println("länge neu: " + spaceHelper);
-			
+		int spaceHelper = this.anzahl_space-length;	
 		for(int i = 0; i<spaceHelper;i++)
 		{
 			spaces += " ";

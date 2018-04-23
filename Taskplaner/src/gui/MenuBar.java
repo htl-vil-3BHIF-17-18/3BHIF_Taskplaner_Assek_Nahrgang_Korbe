@@ -34,7 +34,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	private void initializeControls() {
 		// TODO Auto-generated method stub
-
+		this.tasklist = new TaskList();
+		
 		this.menu = new JMenu("Start");
 		this.menuBar = new JMenuBar();
 		
@@ -42,7 +43,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		this.del = new JMenuItem("Delete");
 		this.edit = new JMenuItem("Edit");
 		this.exit = new JMenuItem("Exit");
-		
+
 		this.menuBar.add(menu);
 		this.menu.addSeparator();
 		this.menu.add(add);
@@ -63,9 +64,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource().equals(add)) {
-			CreateDialog dialog = new CreateDialog(new Task());
-			
-			this.tasklist.addTask(dialog.getTask());
+			Task t =new Task();
+			CreateDialog dialog = new CreateDialog(t);
+			System.out.println(t);
+			this.tasklist.addTask(t);
 		}
 		
 		if(e.getSource().equals(del)) {

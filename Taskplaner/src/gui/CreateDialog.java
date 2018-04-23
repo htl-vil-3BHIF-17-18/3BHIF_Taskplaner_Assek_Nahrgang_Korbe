@@ -30,22 +30,11 @@ public class CreateDialog extends JDialog implements ActionListener{
 	private JTextField ttyp = new JTextField();
 	private JButton bok = new JButton("OK");
 	private JButton bcancel = new JButton("Cancel");
-	private DefaultListModel<Task> dlm;
 	private DateFormat df= new SimpleDateFormat("dd.mm.yyyy");
-	private boolean editflag = false;
 	private Task task;
 	
-	public CreateDialog(DefaultListModel<Task> dlm) {
-		this.dlm = dlm;
-		initializeControls();
-		this.pack();
-		this.setVisible(true);
-	}
-	
 	public CreateDialog(Task task) {
-		this.dlm = dlm;
 		this.task = task;
-		editflag = true;
 		initializeControls();
 		this.pack();
 		this.setVisible(true);
@@ -56,33 +45,26 @@ public class CreateDialog extends JDialog implements ActionListener{
 		bok.addActionListener(this);
 		bcancel.addActionListener(this);
 		this.add(lsubject);
-		this.add(ltext);
-		this.add(ldate);
-		this.add(ltyp);
 		this.add(tsubject);
+		this.add(ltext);
 		this.add(ttext);
+		this.add(ldate);
 		this.add(tdate);
+		this.add(ltyp);
 		this.add(ttyp);
 		this.add(bok);
 		this.add(bcancel);
+		this.setModalityType(ModalityType.APPLICATION_MODAL);
 	}
 	
-	public Task getTask() {
-		return task;
-	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {
 			try {
-				if(editflag) {
-					task.setSubject(tsubject.getText());
-					task.setText(ttext.getText());
-					task.setDatum(df.parse(tdate.getText()));
-					task.setTyp(Task.getTypFromString(ttyp.getText()));
-				}
-				else {
-					dlm.addElement(new Task(tsubject.getText(),ttext.getText(),df.parse(tdate.getText()),Task.getTypFromString(ttyp.getText())));
-				}
+				task.setSubject(tsubject.getText());
+				task.setText(ttext.getText());
+				task.setDatum(df.parse(tdate.getText()));
+				task.setTyp(Task.getTypFromString(ttyp.getText()));
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
