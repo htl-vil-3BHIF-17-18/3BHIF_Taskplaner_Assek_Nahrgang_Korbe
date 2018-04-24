@@ -47,7 +47,7 @@ public class Task {
 	
 	public java.sql.Date getDatumSQL()
 	{
-		return (java.sql.Date) date;
+		return convertJavaDateToSqlDate(date);
 	}
 
 	public void setDatum(Date datum) {
@@ -60,6 +60,11 @@ public class Task {
 
 	public void setTyp(TaskTypEnum typ) {
 		this.typ = typ;
+	}
+	
+	//convert util to sql
+	public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+	    return new java.sql.Date(date.getTime());
 	}
 	
 	public static TaskTypEnum getTypFromString(String s) {

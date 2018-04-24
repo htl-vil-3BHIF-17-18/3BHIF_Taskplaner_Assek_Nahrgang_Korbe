@@ -1,4 +1,4 @@
-package bll;
+package dal;
 
 
 import java.sql.*;
@@ -59,13 +59,14 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
-			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?);");
+			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?)");
 			
 			pstmt_Insert.setString(1, t.getSubject());
 			pstmt_Insert.setString(2, t.getText());
 			pstmt_Insert.setDate(3, t.getDatumSQL());
-			
-			pstmt_Insert .executeUpdate();
+			pstmt_Insert.setString(4, t.getTyp().toString());
+					
+			pstmt_Insert.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

@@ -7,8 +7,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import bll.OracleHelper;
 import bll.Task;
+import dal.OracleHelper;
 
 public class TaskList extends JPanel{
 
@@ -40,6 +40,8 @@ public class TaskList extends JPanel{
 	{
 		this.tasks.add(t);
 		this.dlm.addElement(t);
+		OracleHelper.addTaskToDB(t);
+
 	}
 	
 	public ArrayList<Task> getTasks()
@@ -51,7 +53,8 @@ public class TaskList extends JPanel{
 	{
 		for(Task t : tList)
 		{
-			addTask(t);
+			this.tasks.add(t);
+			this.dlm.addElement(t);
 		}
 	}
 	
