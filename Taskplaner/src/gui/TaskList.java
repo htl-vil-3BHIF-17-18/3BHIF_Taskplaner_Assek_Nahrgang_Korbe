@@ -19,6 +19,7 @@ public class TaskList extends JPanel implements MouseListener{
 	JList<Task> list = null;
 	DefaultListModel<Task> dlm = null;
 	JScrollPane scroll = null;
+	private static Task currentSelectedTask = null;
 	
 	public TaskList()
 	{	
@@ -60,22 +61,24 @@ public class TaskList extends JPanel implements MouseListener{
 		}
 	}
 	
-	public void deleteTask(Task t)
-	{
-		this.tasks.remove(t);
-		this.dlm.removeElement(t);
+	public void deleteTask()
+	{	
+		System.out.println(TaskList.currentSelectedTask);
+		this.tasks.remove(TaskList.currentSelectedTask);
+		this.dlm.removeElement(TaskList.currentSelectedTask);
+		OracleHelper.deleteTaskAtDB(TaskList.currentSelectedTask);
 	}
 	
 	public Task getSelectedTask()
 	{
-		
-		return this.list.getSelectedValue();
+		return this.list.getSelectedValue(); 		 
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println(getSelectedTask());
+		TaskList.currentSelectedTask = getSelectedTask();
 	}
 
 	@Override

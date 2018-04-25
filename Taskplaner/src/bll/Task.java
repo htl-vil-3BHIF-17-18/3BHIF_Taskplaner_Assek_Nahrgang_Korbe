@@ -47,6 +47,7 @@ public class Task {
 	
 	public java.sql.Date getDatumSQL()
 	{
+		
 		return convertJavaDateToSqlDate(date);
 	}
 

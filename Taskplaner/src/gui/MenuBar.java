@@ -71,7 +71,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		}
 		
 		if(e.getSource().equals(del)) {
-			
+			this.tasklist.deleteTask();
 		}
 		
 		if(e.getSource().equals(edit)) {
