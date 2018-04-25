@@ -41,7 +41,6 @@ public class TaskList extends JPanel{
 		this.tasks.add(t);
 		this.dlm.addElement(t);
 		OracleHelper.addTaskToDB(t);
-
 	}
 	
 	public ArrayList<Task> getTasks()
