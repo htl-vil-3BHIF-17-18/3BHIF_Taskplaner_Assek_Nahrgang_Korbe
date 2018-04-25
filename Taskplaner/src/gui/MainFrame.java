@@ -22,6 +22,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private MenuBar mB = null;
 	private SortPanel sP = null;
 	private TaskList tL = null;
+	private FromToPanel ftP = null;
 
 	public MainFrame(String identifier) throws HeadlessException {
 		super();
@@ -39,10 +40,12 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.setLayout(layout);
 		
 		this.mB = new MenuBar();
+		this.ftP = new FromToPanel();
 		this.sP = new SortPanel();
 		this.tL = new TaskList();
 		this.setJMenuBar(mB);
 		
+		this.add(ftP, BorderLayout.SOUTH);
 		this.add(sP, BorderLayout.NORTH);
 		this.add(tL, BorderLayout.CENTER);
 	}
