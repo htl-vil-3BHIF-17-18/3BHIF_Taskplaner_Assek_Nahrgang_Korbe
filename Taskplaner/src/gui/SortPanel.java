@@ -25,7 +25,7 @@ public class SortPanel extends JPanel implements ActionListener {
 		super();
 		this.initializeControls();
 		this.setPreferredSize(new Dimension(200, 36));
-		this.setBackground(Color.DARK_GRAY);
+		this.setBackground(Color.LIGHT_GRAY);
 		this.setVisible(true);
 	}
 

@@ -87,4 +87,9 @@ public class OracleHelper {
 		
 	}
 	
+	
+	public static void deleteTaskAtDB(Task t)
+	{
+		
+	}
 }

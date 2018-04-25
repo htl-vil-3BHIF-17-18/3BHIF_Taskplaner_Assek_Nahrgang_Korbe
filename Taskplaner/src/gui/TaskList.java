@@ -1,5 +1,7 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -10,7 +12,7 @@ import javax.swing.JScrollPane;
 import bll.Task;
 import dal.OracleHelper;
 
-public class TaskList extends JPanel{
+public class TaskList extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = -8459441481289917384L;
 	ArrayList<Task> tasks = null;
@@ -34,6 +36,7 @@ public class TaskList extends JPanel{
 		this.list.setModel(dlm);
 		this.add(this.scroll, BorderLayout.CENTER); 
 		this.fillList(OracleHelper.getListFromDB());
+		this.list.addMouseListener(this);
 	}
 	
 	public void addTask(Task t)
@@ -61,6 +64,42 @@ public class TaskList extends JPanel{
 	{
 		this.tasks.remove(t);
 		this.dlm.removeElement(t);
+	}
+	
+	public Task getSelectedTask()
+	{
+		
+		return this.list.getSelectedValue();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println(getSelectedTask());
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
