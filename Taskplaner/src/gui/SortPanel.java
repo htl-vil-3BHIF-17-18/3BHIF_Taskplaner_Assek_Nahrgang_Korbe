@@ -58,5 +58,19 @@ public class SortPanel extends JPanel implements ActionListener {
 				tl.dlm.addElement(t);
 			}
 		}
+		if(e.getSource().equals(sortDate)) {
+			tl.dlm.clear();
+			tl.tasks.sort((Task t1, Task t2)-> t1.getDatum().compareTo(t2.getDatum()));
+			for(Task t: tl.tasks) {
+				tl.dlm.addElement(t);
+			}
+		}
+		if(e.getSource().equals(sortType)) {
+			tl.dlm.clear();
+			tl.tasks.sort((Task t1, Task t2)-> t1.getTyp().compareTo(t2.getTyp()));
+			for(Task t: tl.tasks) {
+				tl.dlm.addElement(t);
+			}
+		}
 	}
 }
