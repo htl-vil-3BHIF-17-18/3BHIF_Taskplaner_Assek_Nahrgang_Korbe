@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import bll.Task;
+import dal.OracleHelper;
 
 public class MenuBar extends JMenuBar implements ActionListener {
 	
@@ -20,6 +21,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private static final long serialVersionUID = 7795971250872208275L;
 	private JMenu menu = null;
 	private JMenuBar menuBar = null;
+	private JMenuItem connect = null;
 	private JMenuItem add = null;
 	private JMenuItem del = null;
 	private JMenuItem edit = null;
@@ -39,6 +41,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		this.menu = new JMenu("Start");
 		this.menuBar = new JMenuBar();
 		
+		this.connect = new JMenuItem("Connect");
 		this.add = new JMenuItem("Add");
 		this.del = new JMenuItem("Delete");
 		this.edit = new JMenuItem("Edit");
@@ -46,6 +49,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 		this.menuBar.add(menu);
 		this.menu.addSeparator();
+		this.menu.add(connect);
 		this.menu.add(add);
 		this.menu.add(del);
 		this.menu.add(edit);
@@ -54,6 +58,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		
 		this.add(menu);
 		
+		this.connect.addActionListener(this);
 		this.add.addActionListener(this);
 		this.del.addActionListener(this);
 		this.edit.addActionListener(this);
@@ -63,6 +68,10 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource().equals(connect)) {
+			//this.tasklist.fillList(OracleHelper.getListFromDB());
+		}
+		
 		if(e.getSource().equals(add)) {
 			Task t =new Task();
 			CreateDialog dialog = new CreateDialog(t);

@@ -19,7 +19,7 @@ import javax.swing.text.DateFormatter;
 import bll.Task;
 import bll.TaskTypEnum;
 
-public class CreateDialog extends JDialog implements ActionListener{
+public class CreateDialog extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 7152982713464622095L;
 	private JLabel lsubject = new JLabel("Subject");
 	private JLabel ltext = new JLabel("Text");
@@ -28,8 +28,8 @@ public class CreateDialog extends JDialog implements ActionListener{
 	private JTextField tsubject = new JTextField();
 	private JTextField ttext = new JTextField();
 	
-	String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
-     JComboBox<String> typList = new JComboBox<>(types);
+	private String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
+    private JComboBox<String> typList = new JComboBox<>(types);
 	
 	private JTextField tdate = new JTextField();
 	private JTextField ttyp = new JTextField();
