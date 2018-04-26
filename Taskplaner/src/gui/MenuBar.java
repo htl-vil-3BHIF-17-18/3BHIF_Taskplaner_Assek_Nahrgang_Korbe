@@ -15,9 +15,6 @@ import dal.OracleHelper;
 
 public class MenuBar extends JMenuBar implements ActionListener {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7795971250872208275L;
 	private JMenu menu = null;
 	private JMenuBar menuBar = null;
@@ -69,6 +66,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(connect)) {
+			this.tasklist.removeContent();
 			this.tasklist.fillList(OracleHelper.getListFromDB());
 		}
 		

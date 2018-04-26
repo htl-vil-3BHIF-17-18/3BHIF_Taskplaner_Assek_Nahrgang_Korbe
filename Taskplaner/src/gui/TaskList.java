@@ -41,6 +41,12 @@ public class TaskList extends JPanel implements MouseListener{
 		
 	}
 	
+	public void removeContent()
+	{
+		this.tasks.clear();
+		this.dlm.clear();
+	}
+	
 	public void addTask(Task t)
 	{
 		this.tasks.add(t);
