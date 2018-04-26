@@ -69,7 +69,7 @@ public class CreateDialog extends JDialog implements ActionListener {
 				task.setSubject(tsubject.getText());
 				task.setText(ttext.getText());
 				task.setDatum(df.parse(tdate.getText()));
-				task.setTyp(Task.getTypFromString(ttyp.getText()));
+				task.setTyp(Task.getTypFromString((String)typList.getSelectedItem()));
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}

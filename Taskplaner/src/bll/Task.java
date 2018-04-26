@@ -71,7 +71,7 @@ public class Task {
 	public static TaskTypEnum getTypFromString(String s) {
 		TaskTypEnum rgw = null;
 		switch(s) {
-		case "Hausübung":
+		case "Hausuebung":
 			rgw=TaskTypEnum.Hausuebung;
 			break;
 		case "Schularbeit":
@@ -80,7 +80,7 @@ public class Task {
 		case "GLF":
 			rgw=TaskTypEnum.GLF;
 			break;
-		case "Prüfung":
+		case "Pruefung":
 			rgw=TaskTypEnum.Pruefung;
 			break;
 		case "MAK":
