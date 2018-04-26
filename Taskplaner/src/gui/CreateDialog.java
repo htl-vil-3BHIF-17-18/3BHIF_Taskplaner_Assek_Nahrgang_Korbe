@@ -63,7 +63,6 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.add(bcancel);
 		this.setModalityType(ModalityType.APPLICATION_MODAL);
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {
