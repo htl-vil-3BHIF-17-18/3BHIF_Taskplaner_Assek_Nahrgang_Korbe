@@ -56,6 +56,7 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//212.152.179.117 //192.168.128.152
+			
 			try
 			{
 				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
@@ -71,6 +72,7 @@ public class OracleHelper {
 			pstmt_Insert.setDate(3, t.getDatumSQL());
 			pstmt_Insert.setString(4, t.getTyp().toString());		
 			pstmt_Insert.executeUpdate();
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,10 +104,13 @@ public class OracleHelper {
 			{
 				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
 			}
-			pstmt_Delete = con.prepareStatement("DELETE tasks WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
-					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
+			pstmt_Delete = con.prepareStatement("DELETE tasks WHERE fach LIKE ? AND text LIKE ?" +
+					" AND datum LIKE ? AND typ LIKE ? ");
 			
-			
+			pstmt_Delete.setString(1, t.getSubject());
+			pstmt_Delete.setString(2, t.getText());
+			pstmt_Delete.setDate(3, t.getDatumSQL());
+			pstmt_Delete.setString(4, t.getTyp().toString());
 			
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
