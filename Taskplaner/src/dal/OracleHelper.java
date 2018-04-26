@@ -20,7 +20,7 @@ public class OracleHelper {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
 			stmt_Select = con.createStatement();
 			rs = stmt_Select.executeQuery("SELECT * FROM tasks");
 			
@@ -58,7 +58,7 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//212.152.179.117 //192.168.128.152
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
 			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?)");
 			
 			pstmt_Insert.setString(1, t.getSubject());
@@ -100,7 +100,7 @@ public class OracleHelper {
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
 			stmt_Delete = con.createStatement();
 			rs = stmt_Delete.executeQuery("DELETE tasks WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
 											"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
