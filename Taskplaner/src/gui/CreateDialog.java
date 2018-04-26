@@ -49,7 +49,8 @@ public class CreateDialog extends JDialog implements ActionListener {
 		bcancel.addActionListener(this);
 		tsubject.setText(task.getSubject());
 		ttext.setText(task.getText());
-		tdate.setText(new SimpleDateFormat("dd.mm.yyyy").format(task.getDatum()));
+		tdate.setText(new SimpleDateFormat("DD.MM.YYYY").format(task.getDatum()));
+		typList.setSelectedItem(task.getTyp().toString());
 		this.add(lsubject);
 		this.add(tsubject);
 		this.add(ltext);
