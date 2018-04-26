@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -26,6 +27,10 @@ public class CreateDialog extends JDialog implements ActionListener{
 	private JLabel ltyp = new JLabel("Typ");
 	private JTextField tsubject = new JTextField();
 	private JTextField ttext = new JTextField();
+	
+	String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
+     JComboBox<String> typList = new JComboBox<>(types);
+	
 	private JTextField tdate = new JTextField();
 	private JTextField ttyp = new JTextField();
 	private JButton bok = new JButton("OK");
@@ -51,7 +56,7 @@ public class CreateDialog extends JDialog implements ActionListener{
 		this.add(ldate);
 		this.add(tdate);
 		this.add(ltyp);
-		this.add(ttyp);
+		this.add(typList);
 		this.add(bok);
 		this.add(bcancel);
 		this.setModalityType(ModalityType.APPLICATION_MODAL);

@@ -63,7 +63,6 @@ public class TaskList extends JPanel implements MouseListener{
 	
 	public void deleteTask()
 	{	
-		
 		System.out.println(TaskList.currentSelectedTask);
 		this.tasks.remove(TaskList.currentSelectedTask);
 		this.dlm.removeElement(TaskList.currentSelectedTask);

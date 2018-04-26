@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,6 +23,7 @@ public class FromToPanel extends JPanel {
 	private JLabel lbTo = null;
 	private JFormattedTextField ftfFrom = null;
 	private JFormattedTextField ftfTo = null;
+	private JButton btnOK = null;
 	
 	public FromToPanel() {
 		super();
@@ -38,12 +41,14 @@ public class FromToPanel extends JPanel {
 		this.lbFrom = new JLabel("Form:");
 		this.lbTo = new JLabel("To:");
 		
-		this.ftfFrom = new JFormattedTextField("sfs");
-		this.ftfTo = new JFormattedTextField("afdsf");
+		this.ftfFrom = new JFormattedTextField(new Date());
+		this.ftfTo = new JFormattedTextField(new Date());
+		this.btnOK = new JButton("OK");
 		
 		this.add(lbFrom);
 		this.add(ftfFrom);
 		this.add(lbTo);
 		this.add(ftfTo);
+		this.add(btnOK);
 	}
 }
