@@ -32,7 +32,6 @@ public class CreateDialog extends JDialog implements ActionListener {
     private JComboBox<String> typList = new JComboBox<>(types);
 	
 	private JTextField tdate = new JTextField();
-	private JTextField ttyp = new JTextField();
 	private JButton bok = new JButton("OK");
 	private JButton bcancel = new JButton("Cancel");
 	private DateFormat df= new SimpleDateFormat("dd.mm.yyyy");
@@ -49,6 +48,9 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.setLayout(new GridLayout(5,2));
 		bok.addActionListener(this);
 		bcancel.addActionListener(this);
+		tsubject.setText(task.getSubject());
+		ttext.setText(task.getText());
+		tdate.setText(new SimpleDateFormat("dd.mm.yyyy").format(task.getDatum()));
 		this.add(lsubject);
 		this.add(tsubject);
 		this.add(ltext);

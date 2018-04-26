@@ -81,7 +81,10 @@ public class TaskList extends JPanel implements MouseListener{
 		System.out.println(getSelectedTask());
 		TaskList.currentSelectedTask = getSelectedTask();
 	}
-
+	
+	public static Task getCurrentTask() {
+		return TaskList.currentSelectedTask;
+	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub

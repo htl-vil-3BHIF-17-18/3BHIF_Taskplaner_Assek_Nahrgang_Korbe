@@ -1,5 +1,8 @@
 package bll;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -21,7 +24,11 @@ public class Task {
 	public Task() {
 		this.subject = "";
 		this.text = "";
-		this.date = new Date();
+		try {
+			this.date = new SimpleDateFormat("yyyy-mm-dd").parse(LocalDate.now().toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		this.typ = TaskTypEnum.Hausuebung;
 	}
 
