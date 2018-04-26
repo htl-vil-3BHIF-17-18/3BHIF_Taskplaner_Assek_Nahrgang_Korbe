@@ -54,7 +54,6 @@ public class Task {
 	
 	public java.sql.Date getDatumSQL()
 	{
-		
 		return convertJavaDateToSqlDate(date);
 	}
 
@@ -70,7 +69,6 @@ public class Task {
 		this.typ = typ;
 	}
 	
-	//convert util to sql
 	public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
 	    return new java.sql.Date(date.getTime());
 	}
@@ -99,9 +97,6 @@ public class Task {
 
 	@Override
 	public String toString() {	
-	
-		
-		
 		return subject.trim() + getSpaces(subject.trim().length())+"|  " + text + getSpaces(text.length())+"|  " + date + getSpaces(date.toString().length())+"|  " + typ;
 	}
 	
@@ -113,10 +108,6 @@ public class Task {
 		{
 			spaces += " ";
 		}
-
 		return spaces;
 	}
-	
-	
-	
 }

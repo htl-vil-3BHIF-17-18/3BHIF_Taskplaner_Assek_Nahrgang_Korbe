@@ -43,7 +43,6 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.pack();
 		this.setVisible(true);
 	}
-
 	private void initializeControls() {
 		this.setLayout(new GridLayout(5,2));
 		bok.addActionListener(this);
@@ -63,7 +62,7 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.add(bcancel);
 		this.setModalityType(ModalityType.APPLICATION_MODAL);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {

@@ -67,9 +67,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource().equals(connect)) {
-			//this.tasklist.fillList(OracleHelper.getListFromDB());
 		}
 		
 		if(e.getSource().equals(add)) {
