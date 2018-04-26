@@ -69,7 +69,7 @@ public class Task {
 		this.typ = typ;
 	}
 	
-	public java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+	public static java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
 	    return new java.sql.Date(date.getTime());
 	}
 	
@@ -97,7 +97,7 @@ public class Task {
 
 	@Override
 	public String toString() {	
-		return subject.trim() + getSpaces(subject.trim().length())+"|  " + text + getSpaces(text.length())+"|  " + date + getSpaces(date.toString().length())+"|  " + typ;
+		return subject.trim() + getSpaces(subject.trim().length())+"|  " + text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(date.toString().length())+"|  " + typ;
 	}
 	
 	public String getSpaces(int length)
