@@ -9,20 +9,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import bll.Task;
+
 public class SortPanel extends JPanel implements ActionListener {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4997140050621690744L;
-	//fach, datum, schüler, typ
 	private JButton sortSubject = null;
 	private JButton sortDate = null;
-	private JButton sortStudent = null;
+	//private JButton sortStudent = null;
 	private JButton sortType = null;
-			
-	public SortPanel() {
+	private TaskList tl;
+	
+	public SortPanel(TaskList tl) {
 		super();
+		this.tl = tl;
 		this.initializeControls();
 		this.setPreferredSize(new Dimension(200, 36));
 		this.setBackground(Color.LIGHT_GRAY);
@@ -30,29 +30,33 @@ public class SortPanel extends JPanel implements ActionListener {
 	}
 
 	private void initializeControls() {
-		// TODO Auto-generated method stub
 		FlowLayout layout = new FlowLayout();
 		this.setLayout(layout);
 		
 		this.sortSubject = new JButton("Sort By Subject");
 		this.sortDate = new JButton("Sort By Date");
-		this.sortStudent = new JButton("Sort By Student");
+		//this.sortStudent = new JButton("Sort By Student");
 		this.sortType = new JButton("Sort By Type");
 		
 		this.add(sortSubject);
 		this.add(sortDate);
-		this.add(sortStudent);
+		//this.add(sortStudent);
 		this.add(sortType);
 		
 		this.sortSubject.addActionListener(this);
 		this.sortDate.addActionListener(this);
-		this.sortStudent.addActionListener(this);
+		//this.sortStudent.addActionListener(this);
 		this.sortType.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getSource().equals(sortSubject)) {
+			tl.dlm.clear();
+			tl.tasks.sort((Task t1,Task t2)-> t1.getSubject().compareTo(t2.getSubject()));
+			for(Task t: tl.tasks) {
+				tl.dlm.addElement(t);
+			}
+		}
 	}
 }

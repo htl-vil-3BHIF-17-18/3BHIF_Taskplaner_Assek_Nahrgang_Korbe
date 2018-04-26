@@ -35,15 +35,13 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 
 	private void initializeControls() {
-		// TODO Auto-generated method stub
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
 		this.tL = new TaskList();
 		this.mB = new MenuBar(this.tL);
 		this.ftP = new FromToPanel();
-		this.sP = new SortPanel();
-			this.setJMenuBar(mB);
-		
+		this.sP = new SortPanel(this.tL);
+		this.setJMenuBar(mB);
 		this.add(ftP, BorderLayout.SOUTH);
 		this.add(sP, BorderLayout.NORTH);
 		this.add(tL, BorderLayout.CENTER);
