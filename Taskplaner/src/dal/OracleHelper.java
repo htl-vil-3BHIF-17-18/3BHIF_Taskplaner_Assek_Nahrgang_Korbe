@@ -9,6 +9,7 @@ import bll.*;
 public class OracleHelper {
 	
 	
+	@SuppressWarnings("resource")
 	public static ArrayList<Task> getListFromDB()
 	{
 		Connection con = null;
@@ -18,7 +19,14 @@ public class OracleHelper {
 		ArrayList<Task> tasks =new ArrayList<Task>();
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			try
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			}
+			catch(Exception ex)
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			}
 			stmt_Select = con.createStatement();
 			rs = stmt_Select.executeQuery("SELECT * FROM tasks");
 			while(rs.next()) {			
@@ -40,6 +48,7 @@ public class OracleHelper {
 		return tasks;
 	}
 	
+	@SuppressWarnings("resource")
 	public static void addTaskToDB(Task t)
 	{
 		Connection con = null;
@@ -47,7 +56,15 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//212.152.179.117 //192.168.128.152
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			try
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			}
+			catch(Exception ex)
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			}
+			
 			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?)");
 			pstmt_Insert.setString(1, t.getSubject());
 			pstmt_Insert.setString(2, t.getText());
@@ -77,9 +94,19 @@ public class OracleHelper {
 		sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			try
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			}
+			catch(Exception ex)
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			}
 			pstmt_Delete = con.prepareStatement("DELETE tasks WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
 					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
+			
+			
+			
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -94,19 +121,41 @@ public class OracleHelper {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public static void updateTaskInDB(Task oldt, Task newt)
 	{
+		
 		Connection con = null;
 		PreparedStatement pstmt_Delete = null;
 		String sqlDate = oldt.getDatumSQL().toString();
 		sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
 		String sqlDate2 = newt.getDatumSQL().toString();
-		sqlDate = sqlDate2.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
+		sqlDate2 = sqlDate2.substring(8, 10)+"."+sqlDate2.substring(5, 7)+"."+sqlDate2.substring(2, 4) ;
+	
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
-			pstmt_Delete = con.prepareStatement("UPDATE tasks SET fach = '"+ newt.getSubject() +"', text = '"+newt.getText()+"', datum = '"+sqlDate2+"', typ = '"+newt.getTyp().toString()+"' WHERE fach LIKE '" +oldt.getSubject()+"' AND text LIKE '"+ oldt.getText() +
-					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ oldt.getTyp().toString()+"'");
+			try
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			}
+			catch(Exception ex)
+			{
+				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+			}
+			/*pstmt_Delete = con.prepareStatement("UPDATE tasks SET fach = '"+ newt.getSubject() +"', text = '"+newt.getText()+"', datum = '"+sqlDate2+"', typ = '"+newt.getTyp().toString()+"' WHERE fach LIKE '" +oldt.getSubject()+"' AND text LIKE '"+ oldt.getText() +
+					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ oldt.getTyp().toString()+"'");*/
+			pstmt_Delete = con.prepareStatement("UPDATE tasks SET fach = ?, text = ?, datum = ?, typ = ? "+
+					"WHERE fach LIKE ? AND text LIKE ? AND datum LIKE ? AND typ LIKE ?");
+			
+			pstmt_Delete.setString(1, newt.getSubject());
+			pstmt_Delete.setString(2, newt.getText());
+			pstmt_Delete.setString(3, sqlDate2);
+			pstmt_Delete.setString(4, newt.getTyp().toString());
+			pstmt_Delete.setString(5, oldt.getSubject());
+			pstmt_Delete.setString(6, oldt.getText());
+			pstmt_Delete.setString(7, sqlDate);
+			pstmt_Delete.setString(8, oldt.getTyp().toString());
+			
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block

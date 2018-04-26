@@ -28,15 +28,16 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	private JMenuItem exit = null;
 	private TaskList tasklist = null;
 	
-	public MenuBar() {
+	public MenuBar(TaskList tl ) {
 		super();
+		this.tasklist = tl; 
 		this.initializeControls();
 		this.setVisible(true);
 	}
 
 	private void initializeControls() {
 		// TODO Auto-generated method stub
-		this.tasklist = new TaskList();
+	//	this.tasklist = new TaskList();
 		
 		this.menu = new JMenu("Start");
 		this.menuBar = new JMenuBar();
@@ -82,7 +83,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		}
 		
 		if(e.getSource().equals(edit)) {
-			Task t = TaskList.getCurrentTask();
+			Task t = this.tasklist.getCurrentTask();
 			Task t_old= new Task(t.getSubject(),t.getText(),t.getDatum(),t.getTyp());
 			CreateDialog dialog = new CreateDialog(t);
 			OracleHelper.updateTaskInDB(t_old, t);
