@@ -130,7 +130,7 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
-			pstmt_Delete = con.prepareStatement("DELETE tasks WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
+			pstmt_Delete = con.prepareStatement("UPDATE tasks SET "+  +" WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
 					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
