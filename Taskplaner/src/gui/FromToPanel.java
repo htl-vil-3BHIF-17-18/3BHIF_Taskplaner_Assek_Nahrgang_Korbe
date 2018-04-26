@@ -38,7 +38,7 @@ public class FromToPanel extends JPanel {
 		FlowLayout layout = new FlowLayout();
 		this.setLayout(layout);
 		
-		this.lbFrom = new JLabel("Form:");
+		this.lbFrom = new JLabel("From:");
 		this.lbTo = new JLabel("To:");
 		
 		this.ftfFrom = new JFormattedTextField(new Date());
