@@ -84,7 +84,9 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		}
 		
 		if(e.getSource().equals(edit)) {
-			
+			Task t =new Task();
+			//CreateDialog dialog = new CreateDialog();
+			System.out.println(t);
 		}
 
 		if(e.getSource().equals(exit)) {
