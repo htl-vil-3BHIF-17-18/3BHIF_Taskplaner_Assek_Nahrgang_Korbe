@@ -36,7 +36,6 @@ public class TaskList extends JPanel implements MouseListener{
 		this.dlm = new DefaultListModel<Task>();
 		this.list.setModel(dlm);
 		this.add(this.scroll, BorderLayout.CENTER); 
-		this.fillList(OracleHelper.getListFromDB());
 		this.list.addMouseListener(this);
 	}
 	
