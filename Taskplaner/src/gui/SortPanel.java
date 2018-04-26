@@ -42,7 +42,6 @@ public class SortPanel extends JPanel implements ActionListener {
 		this.add(sortDate);
 		//this.add(sortStudent);
 		this.add(sortType);
-		
 		this.sortSubject.addActionListener(this);
 		this.sortDate.addActionListener(this);
 		//this.sortStudent.addActionListener(this);
