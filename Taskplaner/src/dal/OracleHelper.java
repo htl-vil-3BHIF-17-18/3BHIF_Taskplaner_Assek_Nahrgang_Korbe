@@ -91,8 +91,7 @@ public class OracleHelper {
 	public static void deleteTaskAtDB(Task t)
 	{
 		Connection con = null;
-		Statement stmt_Delete = null;
-		ResultSet rs = null;
+		PreparedStatement pstmt_Delete = null;
 		System.out.println(t);
 		String sqlDate = t.getDatumSQL().toString();
 		sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
@@ -101,10 +100,9 @@ public class OracleHelper {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
-			stmt_Delete = con.createStatement();
-			rs = stmt_Delete.executeQuery("DELETE tasks WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
-											"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
-
+			pstmt_Delete = con.prepareStatement("DELETE tasks WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
+					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
+			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,8 +110,7 @@ public class OracleHelper {
 		finally {
 			
 			try {
-				rs.close();
-				stmt_Delete.close();
+				pstmt_Delete.close();
 				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -125,6 +122,32 @@ public class OracleHelper {
 	
 	public static void updateTaskInDB(Task t)
 	{
+		Connection con = null;
+		PreparedStatement pstmt_Delete = null;
+		String sqlDate = t.getDatumSQL().toString();
+		sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+			pstmt_Delete = con.prepareStatement("UPDATE tasks SET "+  +" WHERE fach LIKE '" +t.getSubject()+"' AND text LIKE '"+ t.getText() +
+					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ t.getTyp().toString()+"'");
+			pstmt_Delete.executeUpdate();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			
+			try {
+				pstmt_Delete.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		
 	}
 	
