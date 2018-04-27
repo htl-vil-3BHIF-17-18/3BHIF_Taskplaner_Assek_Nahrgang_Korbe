@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 
 import bll.Task;
 import dal.OracleHelper;
+import java.awt.Font;
 
 public class TaskList extends JPanel implements MouseListener{
 
@@ -32,6 +33,7 @@ public class TaskList extends JPanel implements MouseListener{
 		this.setLayout(new BorderLayout()); 
 		tasks = new ArrayList<Task>();
 		this.list = new JList<Task>();
+		this.list.setFont( new Font("monospaced", Font.PLAIN, 12) );
 		this.scroll = new JScrollPane(list);
 		this.dlm = new DefaultListModel<Task>();
 		this.list.setModel(dlm);
