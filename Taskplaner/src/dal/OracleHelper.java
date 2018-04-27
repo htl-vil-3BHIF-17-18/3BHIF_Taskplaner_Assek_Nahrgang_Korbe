@@ -55,8 +55,6 @@ public class OracleHelper {
 		PreparedStatement pstmt_Insert = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			//212.152.179.117 //192.168.128.152
-			
 			try
 			{
 				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
@@ -74,8 +72,13 @@ public class OracleHelper {
 			pstmt_Insert.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("can't insert null");
+			if(t.getText().length() > 50)
+			{
+				System.out.println("Text is too long (max length: 50) your length: "+t.getText().length());
+			}
+			else {
+				System.out.println("can't insert null");
+			}
 		}
 		finally {
 			try {
@@ -87,14 +90,16 @@ public class OracleHelper {
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public static void deleteTaskAtDB(Task t)
 	{
 		Connection con = null;
 		PreparedStatement pstmt_Delete = null;
 		System.out.println(t);
-		String sqlDate = t.getDatumSQL().toString();
-		sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
+	
 		try {
+			String sqlDate = t.getDatumSQL().toString();
+			sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			try
 			{
@@ -132,12 +137,13 @@ public class OracleHelper {
 		
 		Connection con = null;
 		PreparedStatement pstmt_Delete = null;
-		String sqlDate = oldt.getDatumSQL().toString();
-		sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
-		String sqlDate2 = newt.getDatumSQL().toString();
-		sqlDate2 = sqlDate2.substring(8, 10)+"."+sqlDate2.substring(5, 7)+"."+sqlDate2.substring(2, 4) ;
+	
 	
 		try {
+			String sqlDate = oldt.getDatumSQL().toString();
+			sqlDate = sqlDate.substring(8, 10)+"."+sqlDate.substring(5, 7)+"."+sqlDate.substring(2, 4) ;
+			String sqlDate2 = newt.getDatumSQL().toString();
+			sqlDate2 = sqlDate2.substring(8, 10)+"."+sqlDate2.substring(5, 7)+"."+sqlDate2.substring(2, 4) ;
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			try
 			{
@@ -163,7 +169,13 @@ public class OracleHelper {
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(newt.getText().length() > 50)
+			{
+				System.out.println("Text is too long (max length: 50) your length: "+newt.getText().length());
+			}
+			else {
+				System.out.println("can't update to null");
+			}
 		}
 		finally {
 			try {

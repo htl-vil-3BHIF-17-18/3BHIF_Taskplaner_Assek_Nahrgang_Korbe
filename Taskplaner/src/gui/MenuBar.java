@@ -73,7 +73,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		if(e.getSource().equals(add)) {
 			Task t =new Task();
 			CreateDialog dialog = new CreateDialog(t);
-			System.out.println(t);
 			this.tasklist.addTask(t);
 		}
 		
@@ -86,7 +85,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 			Task t_old= new Task(t.getSubject(),t.getText(),t.getDatum(),t.getTyp());
 			CreateDialog dialog = new CreateDialog(t);
 			OracleHelper.updateTaskInDB(t_old, t);
-			
 		}
 		if(e.getSource().equals(exit)) {
 			System.exit(0);
