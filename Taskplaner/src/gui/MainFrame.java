@@ -39,7 +39,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.setLayout(layout);
 		this.tL = new TaskList();
 		this.mB = new MenuBar(this.tL);
-		this.ftP = new FromToPanel();
+		this.ftP = new FromToPanel(this.tL);
 		this.sP = new SortPanel(this.tL);
 		this.setJMenuBar(mB);
 		this.add(ftP, BorderLayout.SOUTH);
