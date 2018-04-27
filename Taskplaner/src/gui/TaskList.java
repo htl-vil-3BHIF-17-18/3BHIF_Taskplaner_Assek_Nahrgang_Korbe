@@ -33,7 +33,7 @@ public class TaskList extends JPanel implements MouseListener{
 		this.setLayout(new BorderLayout()); 
 		tasks = new ArrayList<Task>();
 		this.list = new JList<Task>();
-		this.list.setFont( new Font("monospaced", Font.PLAIN, 12) );
+		this.list.setFont( new Font("monospaced", Font.BOLD, 12) );
 		this.scroll = new JScrollPane(list);
 		this.dlm = new DefaultListModel<Task>();
 		this.list.setModel(dlm);
