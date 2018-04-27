@@ -75,7 +75,7 @@ public class OracleHelper {
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("can't insert null");
 		}
 		finally {
 			try {
@@ -114,7 +114,7 @@ public class OracleHelper {
 			
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			System.out.println("cant delete if nothing is selected");
 		}
 		finally {
 			try {
@@ -147,8 +147,7 @@ public class OracleHelper {
 			{
 				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
 			}
-			/*pstmt_Delete = con.prepareStatement("UPDATE tasks SET fach = '"+ newt.getSubject() +"', text = '"+newt.getText()+"', datum = '"+sqlDate2+"', typ = '"+newt.getTyp().toString()+"' WHERE fach LIKE '" +oldt.getSubject()+"' AND text LIKE '"+ oldt.getText() +
-					"' AND datum LIKE '" + sqlDate+"' AND typ LIKE '"+ oldt.getTyp().toString()+"'");*/
+			
 			pstmt_Delete = con.prepareStatement("UPDATE tasks SET fach = ?, text = ?, datum = ?, typ = ? "+
 					"WHERE fach LIKE ? AND text LIKE ? AND datum LIKE ? AND typ LIKE ?");
 			
