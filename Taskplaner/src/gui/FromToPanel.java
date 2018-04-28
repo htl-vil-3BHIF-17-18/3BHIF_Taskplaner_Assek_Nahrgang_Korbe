@@ -62,8 +62,10 @@ public class FromToPanel extends JPanel implements ActionListener{
 	{
 		
 		try {
-			System.out.println("From: "+this.df.parse(this.ftfFrom.getValue().toString()));
-			System.out.println("To: "+this.df.parse(this.ftfTo.getValue().toString()));
+			Date dateFrom = this.df.parse(this.ftfFrom.getText());
+			Date dateTo = this.df.parse(this.ftfTo.getText());
+			System.out.println("From: "+ dateFrom);
+			System.out.println("To: "+dateTo);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
