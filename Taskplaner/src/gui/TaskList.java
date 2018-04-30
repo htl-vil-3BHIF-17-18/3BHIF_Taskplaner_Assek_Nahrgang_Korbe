@@ -21,7 +21,7 @@ public class TaskList extends JPanel implements MouseListener{
 	DefaultListModel<Task> dlm = null;
 	JScrollPane scroll = null;
 	private Task currentSelectedTask = null;
-	
+	private PopUpListener pul = null;
 	public TaskList()
 	{	
 		this.initializeControls();
@@ -39,6 +39,7 @@ public class TaskList extends JPanel implements MouseListener{
 		this.list.setModel(dlm);
 		this.add(this.scroll, BorderLayout.CENTER); 
 		this.list.addMouseListener(this);
+		this.pul = new PopUpListener(new PopUpMenu(this));
 	}
 	
 	public void removeContent()
@@ -99,9 +100,11 @@ public class TaskList extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
+		pul.mousePressed(arg0);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+		pul.mouseReleased(arg0);
 	}
 }

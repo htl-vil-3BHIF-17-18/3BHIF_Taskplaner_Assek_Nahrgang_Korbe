@@ -23,6 +23,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private SortPanel sP = null;
 	private TaskList tL = null;
 	private FromToPanel ftP = null;
+	private PopUpListener pul = null;
 
 	public MainFrame(String identifier) throws HeadlessException {
 		super();

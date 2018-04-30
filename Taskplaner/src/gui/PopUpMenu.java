@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import bll.Task;
+
 public class PopUpMenu extends JPopupMenu implements ActionListener {
 
 	/**
@@ -16,16 +18,15 @@ public class PopUpMenu extends JPopupMenu implements ActionListener {
 	private JMenuItem add = null;	
 	private JMenuItem del = null;
 	private JMenuItem edit = null;
+	private TaskList tL = null;
 	
-	public PopUpMenu() {
+	public PopUpMenu(TaskList tL) {
 		super();
+		this.tL = tL;
 		this.initializeContols();
-		this.setVisible(true);
 	}
 	
 	private void initializeContols() {
-		// TODO Auto-generated method stub
-		
 		this.add = new JMenuItem("Add Task");
 		this.del = new JMenuItem("Delete Task");
 		this.edit = new JMenuItem("Edit Task");
@@ -43,6 +44,16 @@ public class PopUpMenu extends JPopupMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource().equals(add)) {
+			Task t = new Task();
+			new CreateDialog(t);
+			tL.addTask(t);
+		}
+		if(e.getSource().equals(del)) {
+			tL.deleteTask();
+		}
+		if(e.getSource().equals(edit)) {
+			new CreateDialog(tL.getCurrentTask());
+		}
 	}
 }
