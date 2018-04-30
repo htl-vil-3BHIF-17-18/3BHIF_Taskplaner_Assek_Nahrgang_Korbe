@@ -14,5 +14,6 @@ public enum TaskSubjectEnum {
 	BWM2,
 	DBI,
 	RK,
-	SOPK
+	SOPK,
+	unkown
 }

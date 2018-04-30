@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 
 import bll.Task;
+import bll.TaskSubjectEnum;
 import bll.TaskTypEnum;
 
 public class CreateDialog extends JDialog implements ActionListener {
@@ -25,12 +26,14 @@ public class CreateDialog extends JDialog implements ActionListener {
 	private JLabel ltext = new JLabel("Text");
 	private JLabel ldate = new JLabel("Date");
 	private JLabel ltyp = new JLabel("Typ");
-	private JTextField tsubject = new JTextField();
 	private JTextField ttext = new JTextField();
 	
 	private String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
     private JComboBox<String> typList = new JComboBox<>(types);
 	
+    private String[] typessub = new String[] { "AM","E","D","POS","GGP","NVS","TINF","BSPK","NW","BWM1","BWM2","DBI","RK","SOPK" };
+    private JComboBox<String> subList = new JComboBox<>(typessub);
+    
 	private JTextField tdate = new JTextField();
 	private JButton bok = new JButton("OK");
 	private JButton bcancel = new JButton("Cancel");
@@ -47,12 +50,12 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.setLayout(new GridLayout(5,2));
 		bok.addActionListener(this);
 		bcancel.addActionListener(this);
-		tsubject.setText(task.getSubject());
+		subList.setSelectedItem(task.getSubject().toString());
 		ttext.setText(task.getText());
 		tdate.setText(new SimpleDateFormat("DD.MM.YYYY").format(task.getDatum()));
 		typList.setSelectedItem(task.getTyp().toString());
 		this.add(lsubject);
-		this.add(tsubject);
+		this.add(subList);
 		this.add(ltext);
 		this.add(ttext);
 		this.add(ldate);
@@ -67,7 +70,7 @@ public class CreateDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {
 			try {
-				task.setSubject(tsubject.getText());
+				task.setSubject((TaskSubjectEnum)subList.getSelectedItem());
 				task.setText(ttext.getText());
 				task.setDatum(df.parse(tdate.getText()));
 				task.setTyp(Task.getTypFromString((String)typList.getSelectedItem()));

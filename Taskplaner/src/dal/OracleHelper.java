@@ -30,7 +30,7 @@ public class OracleHelper {
 			stmt_Select = con.createStatement();
 			rs = stmt_Select.executeQuery("SELECT * FROM tasks");
 			while(rs.next()) {			
-				tasks.add(new Task(rs.getString(1),rs.getString(2), rs.getDate(3), Task.getTypFromString(rs.getString(4))));			
+				tasks.add(new Task(Task.getSubjectFromString(rs.getString(1)),rs.getString(2), rs.getDate(3), Task.getTypFromString(rs.getString(4))));			
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -65,7 +65,7 @@ public class OracleHelper {
 			}
 			
 			pstmt_Insert = con.prepareStatement("INSERT into tasks (fach,text,datum,typ) values(?,?,?,?)");
-			pstmt_Insert.setString(1, t.getSubject());
+			pstmt_Insert.setString(1, t.getSubject().toString());
 			pstmt_Insert.setString(2, t.getText());
 			pstmt_Insert.setDate(3, t.getDatumSQL());
 			pstmt_Insert.setString(4, t.getTyp().toString());		
@@ -112,7 +112,7 @@ public class OracleHelper {
 			pstmt_Delete = con.prepareStatement("DELETE tasks WHERE fach LIKE ? AND text LIKE ?" +
 					" AND datum LIKE ? AND typ LIKE ? ");
 			
-			pstmt_Delete.setString(1, t.getSubject());
+			pstmt_Delete.setString(1, t.getSubject().toString());
 			pstmt_Delete.setString(2, t.getText());
 			pstmt_Delete.setDate(3, t.getDatumSQL());
 			pstmt_Delete.setString(4, t.getTyp().toString());
@@ -157,11 +157,11 @@ public class OracleHelper {
 			pstmt_Delete = con.prepareStatement("UPDATE tasks SET fach = ?, text = ?, datum = ?, typ = ? "+
 					"WHERE fach LIKE ? AND text LIKE ? AND datum LIKE ? AND typ LIKE ?");
 			
-			pstmt_Delete.setString(1, newt.getSubject());
+			pstmt_Delete.setString(1, newt.getSubject().toString());
 			pstmt_Delete.setString(2, newt.getText());
 			pstmt_Delete.setString(3, sqlDate2);
 			pstmt_Delete.setString(4, newt.getTyp().toString());
-			pstmt_Delete.setString(5, oldt.getSubject());
+			pstmt_Delete.setString(5, oldt.getSubject().toString());
 			pstmt_Delete.setString(6, oldt.getText());
 			pstmt_Delete.setString(7, sqlDate);
 			pstmt_Delete.setString(8, oldt.getTyp().toString());
