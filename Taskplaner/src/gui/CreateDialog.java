@@ -27,15 +27,15 @@ public class CreateDialog extends JDialog implements ActionListener {
 	private JLabel ltext = new JLabel("Text");
 	private JLabel ldate = new JLabel("Date");
 	private JLabel ltyp = new JLabel("Typ");
-	
-	private String[] subjects = new String[] { "AM","E","D","POS","GGP","NVS","TINF","BSPK","NW","BWM1","BWM2","DBI","RK","SOPK" };
-	private JComboBox<String> subjectList = new JComboBox<String>(subjects);
-	
+
 	private JTextField ttext = new JTextField();
 	
 	private String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
     private JComboBox<String> typList = new JComboBox<>(types);
 	
+    private String[] typessub = new String[] { "AM","E","D","POS","GGP","NVS","TINF","BSPK","NW","BWM1","BWM2","DBI","RK","SOPK" };
+    private JComboBox<String> subList = new JComboBox<>(typessub);
+    
 	private JTextField tdate = new JTextField();
 	private JButton bok = new JButton("OK");
 	private JButton bcancel = new JButton("Cancel");
@@ -48,16 +48,17 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.pack();
 		this.setVisible(true);
 	}
+	
 	private void initializeControls() {
 		this.setLayout(new GridLayout(5,2));
 		bok.addActionListener(this);
 		bcancel.addActionListener(this);
-		subjectList.setSelectedItem(task.getSubject().toString());
+		subList.setSelectedItem(task.getSubject().toString());
 		ttext.setText(task.getText());
 		tdate.setText(new SimpleDateFormat("DD.MM.YYYY").format(task.getDatum()));
 		typList.setSelectedItem(task.getTyp().toString());
 		this.add(lsubject);
-		this.add(subjectList);
+		this.add(subList);
 		this.add(ltext);
 		this.add(ttext);
 		this.add(ldate);
@@ -72,7 +73,7 @@ public class CreateDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {
 			try {
-				task.setSubject(Task.getSubjectFromString((String)subjectList.getSelectedItem()));
+				task.setSubject(Task.getSubjectFromString((String)subList.getSelectedItem()));
 				task.setText(ttext.getText());
 				task.setDatum(df.parse(tdate.getText()));
 				task.setTyp(Task.getTypFromString((String)typList.getSelectedItem()));

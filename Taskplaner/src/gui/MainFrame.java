@@ -33,6 +33,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.pack();
 		this.setVisible(true);
 	}
+	
 
 	private void initializeControls() {
 		BorderLayout layout = new BorderLayout();

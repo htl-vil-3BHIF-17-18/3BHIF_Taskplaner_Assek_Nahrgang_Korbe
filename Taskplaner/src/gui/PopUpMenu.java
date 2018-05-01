@@ -1,9 +1,15 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
-public class PopUpMenu extends JPopupMenu {
+import bll.Task;
+
+public class PopUpMenu extends JPopupMenu implements ActionListener {
+
 
 	/**
 	 * 
@@ -13,16 +19,15 @@ public class PopUpMenu extends JPopupMenu {
 	private JMenuItem add = null;	
 	private JMenuItem del = null;
 	private JMenuItem edit = null;
+	private TaskList tL = null;
 	
-	public PopUpMenu() {
+	public PopUpMenu(TaskList tL) {
 		super();
+		this.tL = tL;
 		this.initializeContols();
-		this.setVisible(true);
 	}
 	
 	private void initializeContols() {
-		// TODO Auto-generated method stub
-		
 		this.add = new JMenuItem("Add Task");
 		this.del = new JMenuItem("Delete Task");
 		this.edit = new JMenuItem("Edit Task");
@@ -32,9 +37,24 @@ public class PopUpMenu extends JPopupMenu {
 		this.add(del);
 		this.addSeparator();
 		this.add(edit);
-		
-		this.add.setActionCommand("add_PopUp");
-		this.del.setActionCommand("del_PopUp");
-		this.edit.setActionCommand("edit_PopUp");
+	
+		this.add.addActionListener(this);
+		this.del.addActionListener(this);
+		this.edit.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource().equals(add)) {
+			Task t = new Task();
+			new CreateDialog(t);
+			tL.addTask(t);
+		}
+		if(e.getSource().equals(del)) {
+			tL.deleteTask();
+		}
+		if(e.getSource().equals(edit)) {
+			new CreateDialog(tL.getCurrentTask());
+		}
 	}
 }

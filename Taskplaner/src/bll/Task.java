@@ -22,7 +22,11 @@ public class Task {
 	}
 
 	public Task() {
+
 		this.subject = TaskSubjectEnum.AM;
+
+		this.subject = TaskSubjectEnum.unkown;
+
 		this.text = "";
 		try {
 			this.date = new SimpleDateFormat("yyyy-mm-dd").parse(LocalDate.now().toString());
@@ -100,10 +104,10 @@ public class Task {
 		}
 		return rgw;
 	}
-	
-	public static TaskSubjectEnum getSubjectFromString(String s) {
+
+	public static TaskSubjectEnum getSubjectFromString(String sub) {
 		TaskSubjectEnum rgw = null;
-		switch(s) {
+		switch(sub) {
 		case "AM":
 			rgw=TaskSubjectEnum.AM;
 			break;
@@ -146,13 +150,17 @@ public class Task {
 		case "SOPK":
 			rgw=TaskSubjectEnum.SOPK;
 			break;
+		default:
+			rgw=TaskSubjectEnum.unkown;
+			break;
 		}
 		return rgw;
 	}
 
 	@Override
 	public String toString() {	
-		return subject+"|  " + text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(date.toString().length())+"|  " + typ;
+		return subject.toString().trim() + getSpaces(subject.toString().trim().length())+"|  " + text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(date.toString().length())+"|  " + typ;
+
 	}
 	
 	public String getSpaces(int length)
