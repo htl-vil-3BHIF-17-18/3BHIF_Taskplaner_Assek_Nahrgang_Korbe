@@ -8,7 +8,6 @@ import bll.*;
 
 public class OracleHelper {
 	
-	
 	@SuppressWarnings("resource")
 	public static ArrayList<Task> getListFromDB()
 	{
@@ -17,6 +16,7 @@ public class OracleHelper {
 		ResultSet rs = null;
 		Task t = null;
 		ArrayList<Task> tasks =new ArrayList<Task>();
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			try
@@ -32,7 +32,6 @@ public class OracleHelper {
 			while(rs.next()) {			
 				tasks.add(new Task(Task.getSubjectFromString(rs.getString(1)),rs.getString(2), rs.getDate(3), Task.getTypFromString(rs.getString(4))));			
 			}
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +69,6 @@ public class OracleHelper {
 			pstmt_Insert.setDate(3, t.getDatumSQL());
 			pstmt_Insert.setString(4, t.getTyp().toString());		
 			pstmt_Insert.executeUpdate();
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			if(t.getText().length() > 50)
 			{
@@ -134,10 +132,8 @@ public class OracleHelper {
 	@SuppressWarnings("resource")
 	public static void updateTaskInDB(Task oldt, Task newt)
 	{
-		
 		Connection con = null;
 		PreparedStatement pstmt_Delete = null;
-	
 	
 		try {
 			String sqlDate = oldt.getDatumSQL().toString();

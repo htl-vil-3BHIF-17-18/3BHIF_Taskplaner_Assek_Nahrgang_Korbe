@@ -1,14 +1,11 @@
 package gui;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
 import bll.Task;
 import dal.OracleHelper;
@@ -34,7 +31,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 
 	private void initializeControls() {
 		// TODO Auto-generated method stub
-	//	this.tasklist = new TaskList();
 		
 		this.menu = new JMenu("Start");
 		this.menuBar = new JMenuBar();

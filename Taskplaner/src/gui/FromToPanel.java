@@ -102,10 +102,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 		{
 			System.out.println(t.getDatum());
 		}
-		
-		
-		
-		
 		return null;
 	}
 	
@@ -116,6 +112,7 @@ public class FromToPanel extends JPanel implements ActionListener{
 		rgw = this.ftfFrom.getText().substring(6, 10) + "-" + this.ftfFrom.getText().substring(3, 5) + "-" + this.ftfFrom.getText().substring(0, 2);
 		return rgw;
 	}
+	
 	public String getDateToAsString()
 	{
 		String rgw = "";

@@ -22,12 +22,10 @@ public class Task {
 	}
 
 	public Task() {
-
 		this.subject = TaskSubjectEnum.AM;
-
 		this.subject = TaskSubjectEnum.unkown;
-
 		this.text = "";
+		
 		try {
 			this.date = new SimpleDateFormat("yyyy-mm-dd").parse(LocalDate.now().toString());
 		} catch (ParseException e) {
@@ -36,9 +34,6 @@ public class Task {
 		this.typ = TaskTypEnum.Hausuebung;
 	}
 	
-	
-	
-
 	public TaskSubjectEnum getSubject() {
 		return subject;
 	}
@@ -75,9 +70,6 @@ public class Task {
 	public void setTyp(TaskTypEnum typ) {
 		this.typ = typ;
 	}
-	
-	
-	
 	
 	public static java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
 	    return new java.sql.Date(date.getTime());
@@ -159,8 +151,8 @@ public class Task {
 
 	@Override
 	public String toString() {	
-		return subject.toString().trim() + getSpaces(subject.toString().trim().length())+"|  " + text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(date.toString().length())+"|  " + typ;
-
+		return subject.toString().trim() + getSpaces(subject.toString().trim().length())+"|  " + 
+		text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(date.toString().length())+"|  " + typ;
 	}
 	
 	public String getSpaces(int length)

@@ -53,10 +53,12 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.setLayout(new GridLayout(5,2));
 		bok.addActionListener(this);
 		bcancel.addActionListener(this);
+		
 		subList.setSelectedItem(task.getSubject().toString());
 		ttext.setText(task.getText());
 		tdate.setText(new SimpleDateFormat("DD.MM.YYYY").format(task.getDatum()));
 		typList.setSelectedItem(task.getTyp().toString());
+		
 		this.add(lsubject);
 		this.add(subList);
 		this.add(ltext);

@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame extends JFrame {
 
 	/**
 	 * 
@@ -34,7 +34,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.setVisible(true);
 	}
 	
-
 	private void initializeControls() {
 		BorderLayout layout = new BorderLayout();
 		this.setLayout(layout);
@@ -46,11 +45,5 @@ public class MainFrame extends JFrame implements ActionListener {
 		this.add(ftP, BorderLayout.SOUTH);
 		this.add(sP, BorderLayout.NORTH);
 		this.add(tL, BorderLayout.CENTER);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
