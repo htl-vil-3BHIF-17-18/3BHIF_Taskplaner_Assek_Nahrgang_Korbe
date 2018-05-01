@@ -70,7 +70,7 @@ public class CreateDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {
 			try {
-				task.setSubject((TaskSubjectEnum)subList.getSelectedItem());
+				task.setSubject(Task.getSubjectFromString((String)subList.getSelectedItem()));
 				task.setText(ttext.getText());
 				task.setDatum(df.parse(tdate.getText()));
 				task.setTyp(Task.getTypFromString((String)typList.getSelectedItem()));
