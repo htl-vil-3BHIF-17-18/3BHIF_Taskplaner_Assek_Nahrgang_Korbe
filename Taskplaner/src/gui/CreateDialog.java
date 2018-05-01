@@ -15,8 +15,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import bll.Task;
+import bll.TaskSubjectEnum;
 import bll.TaskTypEnum;
 
 public class CreateDialog extends JDialog implements ActionListener {
@@ -25,7 +27,10 @@ public class CreateDialog extends JDialog implements ActionListener {
 	private JLabel ltext = new JLabel("Text");
 	private JLabel ldate = new JLabel("Date");
 	private JLabel ltyp = new JLabel("Typ");
-	private JTextField tsubject = new JTextField();
+	
+	private String[] subjects = new String[] { "AM","E","D","POS","GGP","NVS","TINF","BSPK","NW","BWM1","BWM2","DBI","RK","SOPK" };
+	private JComboBox<String> subjectList = new JComboBox<String>(subjects);
+	
 	private JTextField ttext = new JTextField();
 	
 	private String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
@@ -47,12 +52,12 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.setLayout(new GridLayout(5,2));
 		bok.addActionListener(this);
 		bcancel.addActionListener(this);
-		tsubject.setText(task.getSubject());
+		subjectList.setSelectedItem(task.getSubject().toString());
 		ttext.setText(task.getText());
 		tdate.setText(new SimpleDateFormat("DD.MM.YYYY").format(task.getDatum()));
 		typList.setSelectedItem(task.getTyp().toString());
 		this.add(lsubject);
-		this.add(tsubject);
+		this.add(subjectList);
 		this.add(ltext);
 		this.add(ttext);
 		this.add(ldate);
@@ -67,7 +72,7 @@ public class CreateDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(bok)) {
 			try {
-				task.setSubject(tsubject.getText());
+				task.setSubject(Task.getSubjectFromString((String)subjectList.getSelectedItem()));
 				task.setText(ttext.getText());
 				task.setDatum(df.parse(tdate.getText()));
 				task.setTyp(Task.getTypFromString((String)typList.getSelectedItem()));

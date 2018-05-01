@@ -15,6 +15,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 public class FromToPanel extends JPanel implements ActionListener{
 
@@ -43,24 +44,34 @@ public class FromToPanel extends JPanel implements ActionListener{
 		
 		this.df = new SimpleDateFormat("dd.mm.yyyy");
 		
-		this.lbFrom = new JLabel("From:");
+		this.lbFrom = new JLabel("Tasks From:");
 		this.lbTo = new JLabel("To:");
 		
-		this.ftfFrom = new JFormattedTextField(new Date());
-		this.ftfTo = new JFormattedTextField(new Date());
+		this.ftfFrom = new JFormattedTextField(df);
+		this.ftfTo = new JFormattedTextField(df);
 		this.btnOK = new JButton("OK");
+		
+		try {
+			MaskFormatter dateMask = new MaskFormatter("##.##.####");
+			dateMask.install(ftfFrom);
+			dateMask.install(ftfTo);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.add(lbFrom);
 		this.add(ftfFrom);
+		ftfFrom.setColumns(7);
 		this.add(lbTo);
 		this.add(ftfTo);
+		ftfTo.setColumns(7);
 		this.add(btnOK);
 		this.btnOK.addActionListener(this);
 	}
 	
 	public void checkDate()
-	{
-		
+	{	
 		try {
 			Date dateFrom = this.df.parse(this.ftfFrom.getText());
 			Date dateTo = this.df.parse(this.ftfTo.getText());
@@ -70,8 +81,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	@Override
