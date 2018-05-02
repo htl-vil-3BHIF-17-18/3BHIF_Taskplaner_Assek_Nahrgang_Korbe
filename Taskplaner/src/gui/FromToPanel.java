@@ -94,7 +94,8 @@ public class FromToPanel extends JPanel implements ActionListener{
 		ArrayList<Task> tasksHelp = new ArrayList<Task>();
 		tasksHelp.addAll(this.tasklist.getTasks());
 		this.tasklist.removeContent();
-		
+		addDays(dateFrom,-1);
+		addDays(dateTo,1);
 		
 		for(Task t : tasksHelp)
 		{
@@ -108,6 +109,10 @@ public class FromToPanel extends JPanel implements ActionListener{
 		return this.tasks;
 	}
 	
+	public static void addDays(Date d, int days)
+	{
+	    d.setTime( d.getTime() + (long)days*1000*60*60*24 );
+	}
 	
 
 	@Override
