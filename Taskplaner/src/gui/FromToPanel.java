@@ -98,9 +98,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 		
 		for(Task t : tasksHelp)
 		{
-			System.out.println("Hallo");
-			System.out.println(t.getDatum().after(dateFrom));
-			System.out.println(t.getDatum().before(dateTo));
 			if(t.getDatum().after(dateFrom) && t.getDatum().before(dateTo))
 			{
 				this.tasks.add(t);
