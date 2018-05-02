@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.DateFormatter;
 import javax.swing.text.html.HTMLDocument.Iterator;
@@ -78,6 +79,10 @@ public class CreateDialog extends JDialog implements ActionListener {
 				task.setText(ttext.getText());
 				task.setDatum(df.parse(tdate.getText()));
 				task.setTyp(Task.getTypFromString((String)typList.getSelectedItem()));
+				
+				if(this.ttext.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Please enter a value in all fields!", "Input Error", JOptionPane.ERROR_MESSAGE);
+				}
 			} catch (ParseException e1) {
 				e1.printStackTrace();
 			}
