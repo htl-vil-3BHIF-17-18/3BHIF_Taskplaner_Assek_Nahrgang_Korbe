@@ -42,7 +42,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 	}
 
 	private void initializeControls() {
-		// TODO Auto-generated method stub
 		FlowLayout layout = new FlowLayout();
 		this.setLayout(layout);
 		
@@ -61,11 +60,9 @@ public class FromToPanel extends JPanel implements ActionListener{
 			dateMask.install(this.ftfFrom);
 			dateMask.install(this.ftfTo);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+	
 		this.add(lbFrom);
 		this.add(ftfFrom);
 		ftfFrom.setColumns(7);
@@ -90,7 +87,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 	
 	public ArrayList<Task> getCorrectTasks(Date dateFrom, Date dateTo)
 	{
-		//ArrayList<Task> tasksHelp = this.tasklist.getTasks();
 		ArrayList<Task> tasksHelp = new ArrayList<Task>();
 		tasksHelp.addAll(this.tasklist.getTasks());
 		this.tasklist.removeContent();

@@ -12,10 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class MainFrame extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2616959112461490363L;
 	private String identifier;
 	

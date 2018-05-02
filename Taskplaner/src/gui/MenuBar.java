@@ -30,8 +30,6 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	}
 
 	private void initializeControls() {
-		// TODO Auto-generated method stub
-		
 		this.menu = new JMenu("Start");
 		this.menuBar = new JMenuBar();
 		

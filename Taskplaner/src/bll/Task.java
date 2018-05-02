@@ -11,7 +11,6 @@ public class Task {
 	private String text;
 	private Date date;
 	private TaskTypEnum typ;
-	//private String space = "                                                       ";
 	int anzahl_space = 35; 
 	public Task(TaskSubjectEnum subject, String text, Date datum, TaskTypEnum typ) {
 		super();

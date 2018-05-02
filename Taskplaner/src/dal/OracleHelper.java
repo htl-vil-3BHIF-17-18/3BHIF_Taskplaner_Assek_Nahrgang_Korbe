@@ -164,7 +164,6 @@ public class OracleHelper {
 			
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			if(newt.getText().length() > 50)
 			{
 				System.out.println("Text is too long (max length: 50) your length: "+newt.getText().length());

@@ -10,10 +10,6 @@ import bll.Task;
 
 public class PopUpMenu extends JPopupMenu implements ActionListener {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2214145130534271171L;
 	
 	private JMenuItem add = null;	

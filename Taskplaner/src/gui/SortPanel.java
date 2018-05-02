@@ -16,7 +16,6 @@ public class SortPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 4997140050621690744L;
 	private JButton sortSubject = null;
 	private JButton sortDate = null;
-	//private JButton sortStudent = null;
 	private JButton sortType = null;
 	private TaskList tl;
 	
@@ -35,16 +34,13 @@ public class SortPanel extends JPanel implements ActionListener {
 		
 		this.sortSubject = new JButton("Sort By Subject");
 		this.sortDate = new JButton("Sort By Date");
-		//this.sortStudent = new JButton("Sort By Student");
 		this.sortType = new JButton("Sort By Type");
 		
 		this.add(sortSubject);
 		this.add(sortDate);
-		//this.add(sortStudent);
 		this.add(sortType);
 		this.sortSubject.addActionListener(this);
 		this.sortDate.addActionListener(this);
-		//this.sortStudent.addActionListener(this);
 		this.sortType.addActionListener(this);
 	}
 
