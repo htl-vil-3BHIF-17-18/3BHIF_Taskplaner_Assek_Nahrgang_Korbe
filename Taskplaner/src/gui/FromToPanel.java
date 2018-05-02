@@ -19,18 +19,25 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import bll.Task;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 public class FromToPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 7476815113182438805L;
 	private JLabel lbFrom = null;
 	private JLabel lbTo = null;
-	private JFormattedTextField ftfFrom = null;
-	private JFormattedTextField ftfTo = null;
 	private JButton btnOK = null;
 	private TaskList tasklist;
 	private ArrayList<Task> tasks = null;
 	private SimpleDateFormat formatter = null;
+	private UtilDateModel modelfrom = new UtilDateModel();
+	private UtilDateModel modelto = new UtilDateModel();
+	private JDatePanelImpl datePanelfrom = new JDatePanelImpl(modelfrom);
+	private JDatePickerImpl datePickerfrom = new JDatePickerImpl(datePanelfrom);
+	private JDatePanelImpl datePanelto = new JDatePanelImpl(modelto);
+	private JDatePickerImpl datePickerto = new JDatePickerImpl(datePanelto);
 	
 	public FromToPanel(TaskList tl) {
 		super();
@@ -50,38 +57,18 @@ public class FromToPanel extends JPanel implements ActionListener{
 		
 		this.lbFrom = new JLabel("Tasks From:");
 		this.lbTo = new JLabel("To:");
-		
-		this.ftfFrom = new JFormattedTextField(formatter);
-		this.ftfTo = new JFormattedTextField(formatter);
 		this.btnOK = new JButton("OK");
-		
-		try {
-			MaskFormatter dateMask = new MaskFormatter("##.##.####");
-			dateMask.install(this.ftfFrom);
-			dateMask.install(this.ftfTo);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-	
 		this.add(lbFrom);
-		this.add(ftfFrom);
-		ftfFrom.setColumns(7);
+		this.add(datePickerfrom);
 		this.add(lbTo);
-		this.add(ftfTo);
-		ftfTo.setColumns(7);
+		this.add(datePickerto);
 		this.add(btnOK);
 		this.btnOK.addActionListener(this);
 	}
 	
 	public void checkDate()	 {
-		Date dateFrom = null;
-		Date dateTo = null;
-		try {
-			dateFrom = this.formatter.parse(this.ftfFrom.getText());
-			dateTo = this.formatter.parse(this.ftfTo.getText());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		Date dateFrom = (Date) this.datePickerfrom.getModel().getValue();
+		Date dateTo = (Date) this.datePickerto.getModel().getValue();
 		this.tasklist.fillList(getCorrectTasks(dateFrom,dateTo));
 	}
 	
@@ -91,7 +78,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 		tasksHelp.addAll(this.tasklist.getTasks());
 		this.tasklist.removeContent();
 		addDays(dateFrom,-1);
-		addDays(dateTo,1);
 		
 		for(Task t : tasksHelp)
 		{

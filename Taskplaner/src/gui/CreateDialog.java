@@ -27,7 +27,6 @@ public class CreateDialog extends JDialog implements ActionListener {
 	private JLabel ltext = new JLabel("Text");
 	private JLabel ldate = new JLabel("Date");
 	private JLabel ltyp = new JLabel("Typ");
-
 	private JTextField ttext = new JTextField();
 	
 	private String[] types = new String[] { "Hausuebung", "Schularbeit", "GLF", "Pruefung", "MAK" };
