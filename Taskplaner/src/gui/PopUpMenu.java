@@ -43,8 +43,10 @@ public class PopUpMenu extends JPopupMenu implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(add)) {
 			Task t = new Task();
-			new CreateDialog(t);
-			tL.addTask(t);
+			Task told = t;
+			CreateDialog dialog = new CreateDialog(t);
+			if(!t.equals(told))
+				this.tL.addTask(t);
 		}
 		if(e.getSource().equals(del)) {
 			tL.deleteTask();
