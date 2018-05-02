@@ -46,7 +46,7 @@ public class FromToPanel extends JPanel implements ActionListener{
 		FlowLayout layout = new FlowLayout();
 		this.setLayout(layout);
 		
-		this.formatter =  new SimpleDateFormat("yyyy-MM-dd");
+		this.formatter =  new SimpleDateFormat("dd.MM.yyyy");
 		this.tasks = new ArrayList<Task>();
 		
 		this.lbFrom = new JLabel("Tasks From:");
@@ -58,12 +58,13 @@ public class FromToPanel extends JPanel implements ActionListener{
 		
 		try {
 			MaskFormatter dateMask = new MaskFormatter("##.##.####");
-			dateMask.install(ftfFrom);
-			dateMask.install(ftfTo);
+			dateMask.install(this.ftfFrom);
+			dateMask.install(this.ftfTo);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		this.add(lbFrom);
 		this.add(ftfFrom);
@@ -79,47 +80,38 @@ public class FromToPanel extends JPanel implements ActionListener{
 		Date dateFrom = null;
 		Date dateTo = null;
 		try {
-			dateFrom = this.formatter.parse(getDateFromAsString());
-			dateTo = this.formatter.parse(getDateToAsString());
+			dateFrom = this.formatter.parse(this.ftfFrom.getText());
+			dateTo = this.formatter.parse(this.ftfTo.getText());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println(dateFrom);
-		System.out.println(dateTo);
-		//this.tasklist.removeContent();
-		getCorrectTasks();
+		this.tasklist.fillList(getCorrectTasks(dateFrom,dateTo));
+	}
+	
+	public ArrayList<Task> getCorrectTasks(Date dateFrom, Date dateTo)
+	{
+		//ArrayList<Task> tasksHelp = this.tasklist.getTasks();
+		ArrayList<Task> tasksHelp = new ArrayList<Task>();
+		tasksHelp.addAll(this.tasklist.getTasks());
+		this.tasklist.removeContent();
 		
-		//this.tasklist.fillList(getCorrectTasks());
-		System.out.println("From: "+ this.ftfFrom.getText());
-		System.out.println("To: "+this.ftfTo.getText());
-	}
-	
-	public ArrayList<Task> getCorrectTasks()
-	{
-		this.tasks = this.tasklist.getTasks();
-		for(Task t : this.tasklist.getTasks())
+		
+		for(Task t : tasksHelp)
 		{
-			System.out.println(t.getDatum());
+			System.out.println("Hallo");
+			System.out.println(t.getDatum().after(dateFrom));
+			System.out.println(t.getDatum().before(dateTo));
+			if(t.getDatum().after(dateFrom) && t.getDatum().before(dateTo))
+			{
+				this.tasks.add(t);
+				System.out.println(t.getDatum());
+			}
+	
 		}
-		return null;
+		return this.tasks;
 	}
 	
-	public String getDateFromAsString()
-	{
-		String rgw = "";
-		System.out.println(this.ftfFrom.getText().substring(6, 10) + "-" + this.ftfFrom.getText().substring(3, 5) + "-" + this.ftfFrom.getText().substring(0, 2));
-		rgw = this.ftfFrom.getText().substring(6, 10) + "-" + this.ftfFrom.getText().substring(3, 5) + "-" + this.ftfFrom.getText().substring(0, 2);
-		return rgw;
-	}
 	
-	public String getDateToAsString()
-	{
-		String rgw = "";
-		System.out.println(this.ftfTo.getText().substring(6, 10) + "-" + this.ftfTo.getText().substring(3, 5) + "-" + this.ftfTo.getText().substring(0, 2));
-		rgw = this.ftfTo.getText().substring(6, 10) + "-" + this.ftfTo.getText().substring(3, 5) + "-" + this.ftfTo.getText().substring(0, 2);
-		return rgw;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
