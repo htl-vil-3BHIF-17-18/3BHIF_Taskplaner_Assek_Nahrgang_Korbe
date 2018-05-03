@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
@@ -75,20 +76,22 @@ public class FromToPanel extends JPanel implements ActionListener{
 	
 	public ArrayList<Task> getCorrectTasks(Date dateFrom, Date dateTo)
 	{
-		ArrayList<Task> tasksHelp = new ArrayList<Task>();
-		tasksHelp.addAll(this.tasklist.getTasks());
-		this.tasklist.removeContent();
-		addDays(dateFrom,-1);
+		if(dateFrom == null || dateTo == null) {
+			JOptionPane.showMessageDialog(null, "Please enter values in all fields!", "Input Error", JOptionPane.ERROR_MESSAGE);
+		} else {
+			ArrayList<Task> tasksHelp = new ArrayList<Task>();
+			tasksHelp.addAll(this.tasklist.getTasks());
+			this.tasklist.removeContent();
+			addDays(dateFrom,-1);
 		
-		for(Task t : tasksHelp)
-		{
-			if(t.getDatum().after(dateFrom) && t.getDatum().before(dateTo))
+			for(Task t : tasksHelp)
 			{
-				
-				this.tasks.add(t);
-				System.out.println(t.getDatum());
+				if(t.getDatum().after(dateFrom) && t.getDatum().before(dateTo))
+				{
+					this.tasks.add(t);
+					System.out.println(t.getDatum());
+				}
 			}
-	
 		}
 		return this.tasks;
 	}
