@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
-
 public class Task {
 	private TaskSubjectEnum subject;
 	private String text;
