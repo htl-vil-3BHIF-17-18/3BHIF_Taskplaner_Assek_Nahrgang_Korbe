@@ -13,11 +13,13 @@ public class PopUpListener extends MouseAdapter {
 		this.popup = popup;
 	}
 	
+	@Override
 	public void mousePressed(MouseEvent e) {
         maybeShowPopup(e);
     }
 
-    public void mouseReleased(MouseEvent e) {
+    @Override
+	public void mouseReleased(MouseEvent e) {
         maybeShowPopup(e);
     }
 
