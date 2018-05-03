@@ -4,25 +4,18 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.text.DateFormatter;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import bll.Task;
-import bll.TaskSubjectEnum;
-import bll.TaskTypEnum;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -81,8 +74,6 @@ public class CreateDialog extends JDialog implements ActionListener {
 		this.add(bok);
 		this.add(bcancel);
 		this.setModalityType(ModalityType.APPLICATION_MODAL);
-		
-		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
