@@ -150,7 +150,7 @@ public class Task {
 	@Override
 	public String toString() {	
 		return subject.toString().trim() + getSpaces(subject.toString().trim().length())+"|  " + 
-		text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(date.toString().length())+"|  " + typ;
+		text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(Task.convertJavaDateToSqlDate(date).toString().length())+"|  " + typ;
 	}
 	
 	public String getSpaces(int length)
