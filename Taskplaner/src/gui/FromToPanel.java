@@ -5,22 +5,16 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.text.MaskFormatter;
 
 import bll.Task;
-import dal.OracleHelper;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -102,7 +96,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 	    d.setTime( d.getTime() + (long)days*1000*60*60*24 );
 	}
 	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnOK))
