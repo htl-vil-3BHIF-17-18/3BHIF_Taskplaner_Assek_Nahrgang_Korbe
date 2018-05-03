@@ -43,7 +43,6 @@ public class TaskList extends JPanel implements MouseListener{
 		this.list.setModel(dlm);
 		this.add(this.scroll, BorderLayout.CENTER); 
 		this.list.addMouseListener(this);
-		this.list.setCellRenderer(new SelectedListCellRenderer());
 		this.popUpListener = new PopUpListener(new PopUpMenu(this));
 	}
 	
@@ -84,17 +83,6 @@ public class TaskList extends JPanel implements MouseListener{
 	public Task getSelectedTask()
 	{
 		return this.list.getSelectedValue(); 		 
-	}
-	
-	public class SelectedListCellRenderer extends DefaultListCellRenderer {
-	     @Override
-	     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-	         Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-	         if (index == 3) {
-	             c.setBackground(Color.LIGHT_GRAY);
-	         }
-	         return c;
-	     }
 	}
 
 	@Override
