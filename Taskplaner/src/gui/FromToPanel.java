@@ -79,6 +79,7 @@ public class FromToPanel extends JPanel implements ActionListener{
 		if(dateFrom == null || dateTo == null) {
 			JOptionPane.showMessageDialog(null, "Please enter values in all fields!", "Input Error", JOptionPane.ERROR_MESSAGE);
 		} else {
+			this.tasks.removeAll(this.tasks);
 			ArrayList<Task> tasksHelp = new ArrayList<Task>();
 			tasksHelp.addAll(this.tasklist.getTasks());
 			this.tasklist.removeContent();
