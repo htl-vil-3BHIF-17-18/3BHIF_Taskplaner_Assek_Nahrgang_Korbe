@@ -1,6 +1,5 @@
 package dal;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 
