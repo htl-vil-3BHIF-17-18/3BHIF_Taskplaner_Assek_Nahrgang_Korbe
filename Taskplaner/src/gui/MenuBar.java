@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import bll.Task;
 import dal.OracleHelper;
@@ -72,14 +73,22 @@ public class MenuBar extends JMenuBar implements ActionListener {
 		}
 		
 		if(e.getSource().equals(del)) {
-			this.tasklist.deleteTask();
+			if(tasklist.getCurrentTask()!=null) {
+				this.tasklist.deleteTask();
+			} else {
+				JOptionPane.showMessageDialog(null, "Can't delete if nothing is selected!", "Input Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 		if(e.getSource().equals(edit)) {
-			Task t = this.tasklist.getCurrentTask();
-			Task t_old= new Task(t.getSubject(),t.getText(),t.getDatum(),t.getTyp());
-			CreateDialog dialog = new CreateDialog(t);
-			OracleHelper.updateTaskInDB(t_old, t);
+			if(tasklist.getCurrentTask() != null) {
+				Task t = this.tasklist.getCurrentTask();
+				Task t_old= new Task(t.getSubject(),t.getText(),t.getDatum(),t.getTyp());
+				CreateDialog dialog = new CreateDialog(t);
+				OracleHelper.updateTaskInDB(t_old, t);
+			} else {
+				JOptionPane.showMessageDialog(null, "Can't edit if nothing is selected!", "Input Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		if(e.getSource().equals(exit)) {
 			System.exit(0);
