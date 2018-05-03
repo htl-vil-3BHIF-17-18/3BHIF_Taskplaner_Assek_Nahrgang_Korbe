@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import bll.Task;
+import dal.OracleHelper;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
@@ -75,7 +76,7 @@ public class FromToPanel extends JPanel implements ActionListener{
 	public ArrayList<Task> getCorrectTasks(Date dateFrom, Date dateTo)
 	{
 		ArrayList<Task> tasksHelp = new ArrayList<Task>();
-		tasksHelp.addAll(this.tasklist.getTasks());
+		tasksHelp.addAll(this.tasks);
 		this.tasklist.removeContent();
 		addDays(dateFrom,-1);
 		
@@ -83,6 +84,7 @@ public class FromToPanel extends JPanel implements ActionListener{
 		{
 			if(t.getDatum().after(dateFrom) && t.getDatum().before(dateTo))
 			{
+				
 				this.tasks.add(t);
 				System.out.println(t.getDatum());
 			}
