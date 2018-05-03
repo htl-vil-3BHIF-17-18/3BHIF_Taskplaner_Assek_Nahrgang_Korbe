@@ -84,7 +84,6 @@ public class FromToPanel extends JPanel implements ActionListener{
 				if(t.getDatum().after(dateFrom) && t.getDatum().before(dateTo))
 				{
 					this.tasks.add(t);
-					System.out.println(t.getDatum());
 				}
 			}
 		}
