@@ -11,6 +11,7 @@ public class Task {
 	private Date date;
 	private TaskTypEnum typ;
 	int anzahl_space = 35; 
+	int anzahl_spaceSmaller = 12; 
 	public Task(TaskSubjectEnum subject, String text, Date datum, TaskTypEnum typ) {
 		super();
 		this.subject = subject;
@@ -149,8 +150,8 @@ public class Task {
 
 	@Override
 	public String toString() {	
-		return subject.toString().trim() + getSpaces(subject.toString().trim().length())+"|  " + 
-		text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getSpaces(Task.convertJavaDateToSqlDate(date).toString().length())+"|  " + typ;
+		return subject.toString().trim() + getLessSpaces(subject.toString().trim().length())+"|  " + 
+		text + getSpaces(text.length())+"|  " + Task.convertJavaDateToSqlDate(date) + getLessSpaces(Task.convertJavaDateToSqlDate(date).toString().length())+"|  " + typ;
 	}
 	
 	public String getSpaces(int length)
@@ -163,4 +164,16 @@ public class Task {
 		}
 		return spaces;
 	}
+	public String getLessSpaces(int length)
+	{
+		String spaces = "";
+		int spaceHelper = this.anzahl_spaceSmaller-length;	
+		for(int i = 0; i<spaceHelper;i++)
+		{
+			spaces += " ";
+		}
+		return spaces;
+	}
+	
+	
 }
