@@ -90,8 +90,8 @@ public class TaskList extends JPanel implements MouseListener{
 	     @Override
 	     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 	         Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-	         if (isSelected) {
-	             c.setBackground(Color.RED);
+	         if (index == 3) {
+	             c.setBackground(Color.LIGHT_GRAY);
 	         }
 	         return c;
 	     }
@@ -99,7 +99,6 @@ public class TaskList extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println(getSelectedTask());
 		this.currentSelectedTask = getSelectedTask();
 	}
 	

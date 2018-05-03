@@ -76,7 +76,7 @@ public class FromToPanel extends JPanel implements ActionListener{
 	public ArrayList<Task> getCorrectTasks(Date dateFrom, Date dateTo)
 	{
 		ArrayList<Task> tasksHelp = new ArrayList<Task>();
-		tasksHelp.addAll(this.tasks);
+		tasksHelp.addAll(this.tasklist.getTasks());
 		this.tasklist.removeContent();
 		addDays(dateFrom,-1);
 		
