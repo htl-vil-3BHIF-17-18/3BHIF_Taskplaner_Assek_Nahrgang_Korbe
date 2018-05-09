@@ -1,12 +1,15 @@
 package dal;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
+import util.PropertyManager;
 import bll.*;
 
 public class OracleHelper {
-	
+		
 	@SuppressWarnings("resource")
 	public static ArrayList<Task> getListFromDB()
 	{
@@ -20,11 +23,20 @@ public class OracleHelper {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			try
 			{
-				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@192.168.128.152:1521:ora11g");
+				con = DriverManager.getConnection(PropertyManager.getInstance().readProperty("LocalConnectionString"));
+				
 			}
 			catch(Exception ex)
 			{
-				con = DriverManager.getConnection("jdbc:oracle:thin:d3b09/d3b@212.152.179.117:1521:ora11g");
+				try {
+					con = DriverManager.getConnection(PropertyManager.getInstance().readProperty("ExternalConnectionString"));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			stmt_Select = con.createStatement();
 			rs = stmt_Select.executeQuery("SELECT * FROM tasks");
