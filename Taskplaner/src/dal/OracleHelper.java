@@ -69,13 +69,9 @@ public class OracleHelper {
 			pstmt_Insert.setString(4, t.getTyp().toString());		
 			pstmt_Insert.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
-			if(t.getText().length() > 50)
-			{
-				System.out.println("Text is too long (max length: 50) your length: "+t.getText().length());
-			}
-			else {
+		
 				System.out.println("can't insert null");
-			}
+			
 		}
 		finally {
 			try {
@@ -163,13 +159,9 @@ public class OracleHelper {
 			
 			pstmt_Delete.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
-			if(newt.getText().length() > 50)
-			{
-				System.out.println("Text is too long (max length: 50) your length: "+newt.getText().length());
-			}
-			else {
+		
 				System.out.println("can't update to null");
-			}
+			
 		}
 		finally {
 			try {
