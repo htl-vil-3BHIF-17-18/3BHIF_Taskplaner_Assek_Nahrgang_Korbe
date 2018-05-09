@@ -24,7 +24,6 @@ public class OracleHelper {
 			try
 			{
 				con = DriverManager.getConnection(PropertyManager.getInstance().readProperty("LocalConnectionString"));
-				
 			}
 			catch(Exception ex)
 			{
