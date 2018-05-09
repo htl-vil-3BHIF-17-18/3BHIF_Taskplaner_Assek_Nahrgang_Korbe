@@ -62,7 +62,7 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(connect)) {
 			this.tasklist.removeContent();
-			this.tasklist.fillList(OracleHelper.getListFromDB());
+			this.tasklist.fillList(Task.fillTaskList());
 		}
 		
 		if(e.getSource().equals(add)) {
@@ -85,7 +85,8 @@ public class MenuBar extends JMenuBar implements ActionListener {
 				Task t = this.tasklist.getCurrentTask();
 				Task t_old= new Task(t.getSubject(),t.getText(),t.getDatum(),t.getTyp());
 				CreateDialog dialog = new CreateDialog(t);
-				OracleHelper.updateTaskInDB(t_old, t);
+				t.updateTask(t_old);
+				//OracleHelper.updateTaskInDB(t_old, t);
 			} else {
 				JOptionPane.showMessageDialog(null, "Can't edit if nothing is selected!", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}

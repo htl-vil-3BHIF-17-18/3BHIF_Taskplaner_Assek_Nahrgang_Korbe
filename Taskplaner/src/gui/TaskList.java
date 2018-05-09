@@ -54,9 +54,16 @@ public class TaskList extends JPanel implements MouseListener{
 	
 	public void addTask(Task t)
 	{
-		OracleHelper.addTaskToDB(t);
+		t.insertTask();
 		this.tasks.add(t);
 		this.dlm.addElement(t);
+	}
+	
+	public void deleteTask()
+	{	
+		this.currentSelectedTask.deleteTask();
+		this.tasks.remove(this.currentSelectedTask);
+		this.dlm.removeElement(this.currentSelectedTask);
 	}
 	
 	public ArrayList<Task> getTasks()
@@ -73,12 +80,7 @@ public class TaskList extends JPanel implements MouseListener{
 		}
 	}
 	
-	public void deleteTask()
-	{	
-		OracleHelper.deleteTaskAtDB(this.currentSelectedTask);
-		this.tasks.remove(this.currentSelectedTask);
-		this.dlm.removeElement(this.currentSelectedTask);
-	}
+	
 	
 	public Task getSelectedTask()
 	{

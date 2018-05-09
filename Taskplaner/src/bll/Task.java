@@ -3,15 +3,20 @@ package bll;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+
+import dal.OracleHelper;
+import gui.TaskList;
 
 public class Task {
 	private TaskSubjectEnum subject;
 	private String text;
 	private Date date;
 	private TaskTypEnum typ;
-	int anzahl_space = 35; 
-	int anzahl_spaceSmaller = 12; 
+	private int anzahl_space = 35; 
+	private int anzahl_spaceSmaller = 12; 
+	private TaskList tasklist = new TaskList();
 	public Task(TaskSubjectEnum subject, String text, Date datum, TaskTypEnum typ) {
 		super();
 		this.subject = subject;
@@ -72,6 +77,25 @@ public class Task {
 	
 	public static java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
 	    return new java.sql.Date(date.getTime());
+	}
+	
+	public void insertTask()
+	{
+		OracleHelper.addTaskToDB(this);
+	}
+	public static ArrayList<Task> fillTaskList()
+	{
+		return OracleHelper.getListFromDB();
+	}
+	
+	public void updateTask(Task t_old)
+	{
+		OracleHelper.updateTaskInDB(t_old,this);
+	}
+	
+	public void deleteTask()
+	{
+		OracleHelper.deleteTaskAtDB(this);
 	}
 	
 	public static TaskTypEnum getTypFromString(String s) {
